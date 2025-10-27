@@ -61,7 +61,3 @@ npm start
 ##  License
 
 Copyright © 2025 Tavo Fusion. All rights reserved.
-
-## 👥 Credits
-
-Built with ❤️ using Next.js and Tailwind CSS
