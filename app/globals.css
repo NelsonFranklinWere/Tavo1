@@ -300,9 +300,20 @@ button {
 
 .glass-effect {
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(220, 38, 38, 0.3);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize glass effect for mobile */
+@media (max-width: 768px) {
+  .glass-effect {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
 }
 
 .text-balance {

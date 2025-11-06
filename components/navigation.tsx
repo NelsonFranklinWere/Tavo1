@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -17,6 +17,7 @@ const navLinks = [
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,14 +28,34 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <>
       <a href="#main-content" className="skip-to-content">
         Skip to main content
       </a>
       <nav
+        ref={navRef}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-[60] transition-all duration-300",
           scrolled
             ? "bg-primary-900/80 backdrop-blur-lg border-b border-primary-800/50 shadow-2xl"
             : "bg-primary-900/20 backdrop-blur-sm md:bg-primary-900"
@@ -84,7 +105,7 @@ export function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden bg-primary-900/95 backdrop-blur-lg border-t border-primary-800 shadow-2xl">
+          <div className="md:hidden bg-primary-900/95 backdrop-blur-lg border-t border-primary-800 shadow-2xl relative z-[60]">
             <div className="container mx-auto px-4 py-6 max-w-7xl">
               <div className="flex flex-col gap-4">
                 {navLinks.map((link) => (

@@ -49,7 +49,7 @@ export default function ContactPage() {
                   href={restaurantInfo.social.google}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 mt-4 px-3 py-2 sm:px-4 sm:py-2 bg-accent-600 hover:bg-accent-500 text-white rounded-full font-medium transition-all duration-300 hover:scale-105 text-xs sm:text-sm"
+                  className="inline-flex items-center gap-2 mt-4 px-3 py-2 sm:px-4 sm:py-2 bg-accent-600 hover:bg-accent-500 text-white rounded-full font-medium transition-all duration-300 md:hover:scale-105 text-xs sm:text-sm"
                 >
                   <Navigation className="w-4 h-4" />
                   Get Directions
@@ -112,7 +112,7 @@ export default function ContactPage() {
                   href={restaurantInfo.social.google}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-accent-600 hover:bg-accent-500 text-white rounded-full font-medium transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-accent-600 hover:bg-accent-500 text-white rounded-full font-medium transition-all duration-300 md:hover:scale-105"
                 >
                   <Navigation className="w-4 h-4" />
                   Open in Google Maps
@@ -148,9 +148,9 @@ export default function ContactPage() {
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               <Link
                 href="/reservations"
-                className="group p-4 sm:p-6 bg-primary-900 rounded-2xl text-center hover:shadow-2xl hover:shadow-accent-500/20 transition-all duration-300 hover:scale-105 border border-primary-800/50 hover:border-accent-500/50"
+                className="group p-4 sm:p-6 bg-primary-900 rounded-2xl text-center hover:shadow-2xl hover:shadow-accent-500/20 transition-all duration-300 md:hover:scale-105 border border-primary-800/50 hover:border-accent-500/50"
               >
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent-600 to-accent-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent-600 to-accent-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 md:group-hover:scale-110 transition-transform duration-300">
                   <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <h3 className="font-bold mb-2 text-white text-sm sm:text-base">Reserve Table</h3>
@@ -161,9 +161,9 @@ export default function ContactPage() {
                 href={`https://wa.me/${restaurantInfo.whatsapp.replace(/[^0-9]/g, '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-4 sm:p-6 bg-primary-900 rounded-2xl text-center hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 hover:scale-105 border border-primary-800/50 hover:border-green-500/50"
+                className="group p-4 sm:p-6 bg-primary-900 rounded-2xl text-center hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 md:hover:scale-105 border border-primary-800/50 hover:border-green-500/50"
               >
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-600 to-green-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-600 to-green-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 md:group-hover:scale-110 transition-transform duration-300">
                   <MessageSquare className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <h3 className="font-bold mb-2 text-white text-sm sm:text-base">WhatsApp Us</h3>
@@ -172,9 +172,9 @@ export default function ContactPage() {
 
               <a
                 href={`tel:${restaurantInfo.phone}`}
-                className="group p-4 sm:p-6 bg-primary-900 rounded-2xl text-center hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 border border-primary-800/50 hover:border-blue-500/50 col-span-2 lg:col-span-1"
+                className="group p-4 sm:p-6 bg-primary-900 rounded-2xl text-center hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 md:hover:scale-105 border border-primary-800/50 hover:border-blue-500/50 col-span-2 lg:col-span-1"
               >
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 md:group-hover:scale-110 transition-transform duration-300">
                   <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <h3 className="font-bold mb-2 text-white text-sm sm:text-base">Call Us</h3>

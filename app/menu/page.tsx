@@ -62,7 +62,7 @@ export default function MenuPage() {
             href={restaurantInfo.social.bolt}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-brand-500 to-accent-500 hover:from-brand-400 hover:to-accent-400 text-white rounded-full font-bold text-lg transition-all duration-300 shadow-2xl shadow-brand-500/30 hover:shadow-2xl hover:shadow-brand-500/50 hover:scale-105"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-brand-500 to-accent-500 hover:from-brand-400 hover:to-accent-400 text-white rounded-full font-bold text-lg transition-all duration-300 shadow-2xl shadow-brand-500/30 hover:shadow-2xl hover:shadow-brand-500/50 md:hover:scale-105"
           >
             Order Now
             <UtensilsCrossed className="w-5 h-5" />
@@ -80,7 +80,7 @@ export default function MenuPage() {
                 onClick={() => setActiveCategory(category.id)}
                 className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
                   activeCategory === category.id
-                    ? "bg-gradient-to-r from-accent-500 to-brand-500 text-white shadow-lg shadow-primary-500/50 scale-105"
+                    ? "bg-gradient-to-r from-accent-500 to-brand-500 text-white shadow-lg shadow-primary-500/50 md:scale-105"
                     : "bg-neutral-800 text-white hover:bg-neutral-700 hover:text-white"
                 }`}
               >
@@ -98,7 +98,7 @@ export default function MenuPage() {
             {filteredItems.map((item) => (
               <div
                 key={item.id}
-                className="group relative bg-primary-900/50 backdrop-blur-sm rounded-3xl border border-primary-800/50 overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-accent-500/50 hover:shadow-2xl hover:shadow-accent-500/10"
+                className="group relative bg-primary-900/50 backdrop-blur-sm rounded-3xl border border-primary-800/50 overflow-hidden transition-all duration-300 md:hover:scale-[1.02] hover:border-accent-500/50 hover:shadow-2xl hover:shadow-accent-500/10"
               >
                 {/* Food Image */}
                 <div className="relative h-56 overflow-hidden">
@@ -173,7 +173,7 @@ export default function MenuPage() {
                 </div>
 
                 {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               </div>
             ))}
           </div>
@@ -187,7 +187,7 @@ export default function MenuPage() {
                 </p>
                 <a
                   href="/reservations"
-                  className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-accent-500 to-brand-500 hover:from-accent-400 hover:to-brand-400 text-white rounded-full font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-accent-500/50 hover:scale-105"
+                  className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-accent-500 to-brand-500 hover:from-accent-400 hover:to-accent-400 text-white rounded-full font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-accent-500/50 md:hover:scale-105"
                 >
                   <UtensilsCrossed className="w-5 h-5" />
                   Reserve Your Table

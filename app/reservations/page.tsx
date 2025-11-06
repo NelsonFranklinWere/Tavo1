@@ -38,14 +38,14 @@ export default function ReservationsPage() {
           <div className="flex flex-row gap-4 justify-center items-center">
             <a
               href={`https://wa.me/${restaurantInfo.whatsapp.replace(/[^0-9]/g, '')}`}
-              className="flex items-center gap-3 px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-full font-bold transition-all duration-300 hover:scale-105"
+              className="flex items-center gap-3 px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-full font-bold transition-all duration-300 md:hover:scale-105"
             >
               <MessageSquare className="w-5 h-5" />
               WhatsApp to Book
             </a>
             <a
               href={`tel:${restaurantInfo.phone}`}
-              className="flex items-center gap-3 px-8 py-4 bg-accent-600 hover:bg-accent-500 text-white rounded-full font-bold transition-all duration-300 hover:scale-105"
+              className="flex items-center gap-3 px-8 py-4 bg-accent-600 hover:bg-accent-500 text-white rounded-full font-bold transition-all duration-300 md:hover:scale-105"
             >
               <Phone className="w-5 h-5" />
               Call Us to Book
@@ -95,7 +95,7 @@ export default function ReservationsPage() {
             <div className="flex flex-row gap-4 justify-center items-center">
               <a
                 href={`tel:${restaurantInfo.phone}`}
-                className="px-8 py-4 bg-primary-900 hover:bg-primary-800 text-accent-400 rounded-full font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-primary-900 hover:bg-primary-800 text-accent-400 rounded-full font-bold transition-all duration-300 md:hover:scale-105 flex items-center justify-center gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Call Us
@@ -104,7 +104,7 @@ export default function ReservationsPage() {
                 href={`https://wa.me/${restaurantInfo.whatsapp.replace(/[^0-9]/g, '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-full font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-full font-bold transition-all duration-300 md:hover:scale-105 flex items-center justify-center gap-2"
               >
                 <MessageSquare className="w-5 h-5" />
                 WhatsApp
@@ -112,7 +112,7 @@ export default function ReservationsPage() {
             </div>
             <a
               href={`mailto:${restaurantInfo.email}`}
-              className="px-8 py-4 bg-primary-700 hover:bg-primary-600 text-white rounded-full font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
+              className="px-8 py-4 bg-primary-700 hover:bg-primary-600 text-white rounded-full font-bold transition-all duration-300 md:hover:scale-105 flex items-center justify-center gap-2"
             >
               <Mail className="w-5 h-5" />
               Email Us

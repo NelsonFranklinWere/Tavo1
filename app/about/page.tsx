@@ -151,21 +151,21 @@ export default function AboutPage() {
             Our Values
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-            <div className="text-center p-4 sm:p-6 md:p-8 bg-primary-900 rounded-2xl border border-primary-800/50 hover:border-accent-500/50 transition-all duration-300">
+            <div className="text-center p-4 sm:p-6 md:p-8 bg-primary-900 rounded-2xl border border-primary-800/50 md:hover:border-accent-500/50 transition-colors duration-200">
               <UtensilsCrossed className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto mb-3 sm:mb-4 text-accent-500" />
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Taste</h3>
               <p className="text-xs sm:text-sm text-neutral-300">
                 Every dish is a celebration of flavor, crafted with the finest ingredients and expert techniques
               </p>
             </div>
-            <div className="text-center p-4 sm:p-6 md:p-8 bg-primary-900 rounded-2xl border border-primary-800/50 hover:border-accent-500/50 transition-all duration-300">
+            <div className="text-center p-4 sm:p-6 md:p-8 bg-primary-900 rounded-2xl border border-primary-800/50 md:hover:border-accent-500/50 transition-colors duration-200">
               <Users className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto mb-3 sm:mb-4 text-accent-500" />
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Ambience</h3>
               <p className="text-xs sm:text-sm text-neutral-300">
                 Our elegant space creates the perfect atmosphere for intimate dinners and special celebrations
               </p>
             </div>
-            <div className="text-center p-4 sm:p-6 md:p-8 bg-primary-900 rounded-2xl border border-primary-800/50 hover:border-accent-500/50 transition-all duration-300 col-span-2 lg:col-span-1">
+            <div className="text-center p-4 sm:p-6 md:p-8 bg-primary-900 rounded-2xl border border-primary-800/50 md:hover:border-accent-500/50 transition-colors duration-200 col-span-2 lg:col-span-1 transform-gpu">
               <Award className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto mb-3 sm:mb-4 text-accent-500" />
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Quality</h3>
               <p className="text-xs sm:text-sm text-neutral-300">

@@ -83,8 +83,8 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {/* Feature 1 */}
-            <div className="group text-center p-4 sm:p-6 md:p-8 glass-effect rounded-3xl hover:border-accent-500/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
+            <div className="group text-center p-4 sm:p-6 md:p-8 glass-effect rounded-3xl border-accent-500/30 md:hover:border-accent-500/50 transition-all duration-300 md:hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10">
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 md:group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
                 <UtensilsCrossed className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
               </div>
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Culinary Excellence</h3>
@@ -94,8 +94,8 @@ export default function Home() {
             </div>
 
             {/* Feature 2 */}
-            <div className="group text-center p-4 sm:p-6 md:p-8 glass-effect rounded-3xl hover:border-accent-500/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
+            <div className="group text-center p-4 sm:p-6 md:p-8 glass-effect rounded-3xl border-accent-500/30 md:hover:border-accent-500/50 transition-all duration-300 md:hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10">
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 md:group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
                 <Users className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
               </div>
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Elegant Ambience</h3>
@@ -105,8 +105,8 @@ export default function Home() {
             </div>
 
             {/* Feature 3 */}
-            <div className="group text-center p-4 sm:p-6 md:p-8 glass-effect rounded-3xl hover:border-accent-500/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10 col-span-2 lg:col-span-1">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
+            <div className="group text-center p-4 sm:p-6 md:p-8 glass-effect rounded-3xl border-accent-500/30 md:hover:border-accent-500/50 transition-all duration-300 md:hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10 col-span-2 lg:col-span-1 transform-gpu">
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 md:group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30 transform-gpu">
                 <Award className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
               </div>
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Exceptional Service</h3>

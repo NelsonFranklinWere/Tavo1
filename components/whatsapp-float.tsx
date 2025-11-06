@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { MessageSquare, X } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faMessage, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { restaurantInfo } from "@/lib/data";
 
 export function WhatsAppFloat() {
@@ -55,14 +57,10 @@ export function WhatsAppFloat() {
       {showPopup && (
         <div className="absolute bottom-20 right-0 bg-white rounded-2xl shadow-2xl p-3 animate-fade-in border border-gray-200">
           <div className="flex items-center gap-3">
-            <div className="flex-shrink-0">
-              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <MessageSquare className="w-4 h-4 text-white" />
-              </div>
-            </div>
             <div className="flex-1">
-              <p className="text-gray-700 text-sm font-medium">
-                Need help? Chat with us on WhatsApp!
+              <p className="text-gray-700 text-sm font-medium leading-tight">
+                Let&apos;s serve you today<br />
+                at Tavo
               </p>
             </div>
             <button
@@ -70,7 +68,7 @@ export function WhatsAppFloat() {
               className="flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors"
               aria-label="Close popup"
             >
-              <X className="w-4 h-4" />
+              <FontAwesomeIcon icon={faXmark} className="w-4 h-4" />
             </button>
           </div>
           {/* Arrow pointing to button */}
@@ -81,10 +79,10 @@ export function WhatsAppFloat() {
       {/* WhatsApp Button */}
       <button
         onClick={handleWhatsAppClick}
-        className="group relative bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 animate-bounce"
+        className="group relative bg-green-500 hover:bg-green-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 animate-bounce"
         aria-label="Chat with us on WhatsApp"
       >
-        <MessageSquare className="w-6 h-6" />
+        <FontAwesomeIcon icon={faWhatsapp} className="w-7 h-7" />
         
         {/* Pulse animation */}
         <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-20"></div>
