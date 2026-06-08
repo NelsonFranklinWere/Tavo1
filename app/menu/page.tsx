@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { menuItems } from "@/lib/data";
+import { menuItems, restaurantInfo } from "@/lib/data";
 import { OptimizedImage } from "@/components/optimized-image";
 import { heroImages, preloadImages } from "@/lib/images";
 import { MenuCategory } from "@/lib/types";
-import { UtensilsCrossed, Leaf, Flame, Star } from "lucide-react";
-import { restaurantInfo } from "@/lib/data";
+import { UtensilsCrossed, Leaf, Flame } from "lucide-react";
+import { PageHero } from "@/components/page-hero";
+import { AppButton } from "@/components/ui/app-button";
 
 const categories: { id: MenuCategory; label: string }[] = [
   { id: "starters", label: "Starters" },
@@ -28,9 +29,7 @@ export default function MenuPage() {
 
   const filteredItems = menuItems.filter((item) => item.category === activeCategory);
 
-  const formatPrice = (price: number) => {
-    return `KES ${price.toLocaleString()}`;
-  };
+  const formatPrice = (price: number) => `KES ${price.toLocaleString()}`;
 
   const getSpiceLevelIcon = (level?: "mild" | "medium" | "hot") => {
     if (!level) return null;
@@ -38,60 +37,34 @@ export default function MenuPage() {
     return (
       <div className="flex gap-1" title={level}>
         {Array.from({ length: intensity }).map((_, i) => (
-          <Flame key={i} className="w-4 h-4 text-orange-500" />
+          <Flame key={i} className="w-4 h-4 text-accent-400" />
         ))}
       </div>
     );
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-20 bg-gradient-modern">
-      {/* Header */}
-      <section className="py-20 md:py-24 relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <OptimizedImage
-            src={heroImages.menu}
-            alt="TAVO Restaurant Menu"
-            fill
-            className="object-cover"
-            variant="hero"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 max-w-6xl text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-brand-500">
-              Our Menu
-            </h1>
-          <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto leading-relaxed mb-8">
-            Discover our carefully crafted selection of Indian fusion dishes
-          </p>
-          <a
-            href={restaurantInfo.social.bolt}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-brand-500 to-accent-500 hover:from-brand-400 hover:to-accent-400 text-white rounded-full font-bold text-lg transition-all duration-300 shadow-2xl shadow-brand-500/30 hover:shadow-2xl hover:shadow-brand-500/50 md:hover:scale-105"
-          >
-            Order Now
-            <UtensilsCrossed className="w-5 h-5" />
-          </a>
-        </div>
-      </section>
+    <div className="min-h-screen bg-charcoal-950">
+      <PageHero
+        image={heroImages.menu}
+        imageAlt="TAVO Restaurant Menu"
+        eyebrow="Culinary Collection"
+        title="Our Menu"
+        subtitle="Discover our carefully crafted selection of fine fusion delicacies — composed for Nairobi's most discerning tables."
+      />
 
       {/* Category Tabs */}
-      <section className="sticky top-20 z-40 bg-primary-900/80 backdrop-blur-lg border-b border-primary-800/50 shadow-lg">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
+      <section className="sticky top-20 z-40 bg-charcoal-950/95 backdrop-blur-xl border-b border-accent-500/15">
+        <div className="container mx-auto px-4 max-w-6xl py-4">
+          <div className="flex gap-3 overflow-x-auto scrollbar-hide justify-center md:justify-start">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
+                className={`px-6 py-2.5 rounded-full text-xs tracking-[0.15em] uppercase whitespace-nowrap flex-shrink-0 font-semibold transition-all duration-300 ${
                   activeCategory === category.id
-                    ? "bg-gradient-to-r from-accent-500 to-brand-500 text-white shadow-lg shadow-primary-500/50 md:scale-105"
-                    : "bg-neutral-800 text-white hover:bg-neutral-700 hover:text-white"
+                    ? "bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/30"
+                    : "border border-gold-500/25 text-champagne/70 hover:text-accent-300 hover:border-accent-500/50"
                 }`}
               >
                 {category.label}
@@ -102,108 +75,101 @@ export default function MenuPage() {
       </section>
 
       {/* Menu Items */}
-      <section className="py-16">
+      <section className="py-16 md:py-20">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+          <p className="text-center text-champagne/50 text-sm tracking-wide mb-10">
+            {filteredItems.length} delicacies · {categories.find((c) => c.id === activeCategory)?.label}
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredItems.map((item) => (
-              <div
+              <article
                 key={item.id}
-                className="group relative bg-primary-900/50 backdrop-blur-sm rounded-3xl border border-primary-800/50 overflow-hidden transition-all duration-300 md:hover:scale-[1.02] hover:border-accent-500/50 hover:shadow-2xl hover:shadow-accent-500/10"
+                className="group relative bg-charcoal-900/60 border border-gold-500/15 hover:border-accent-500/40 overflow-hidden transition-all duration-300 hover:shadow-red-lg"
               >
-                {/* Food Image */}
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-52 sm:h-56 overflow-hidden">
                   {item.image ? (
                     <OptimizedImage
                       src={item.image}
                       alt={item.name}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                       variant="menuCard"
                     />
                   ) : (
-                    <div className="relative h-full bg-gradient-to-br from-accent-500/30 via-brand-500/30 to-brand-500/30 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="relative">
-                            <UtensilsCrossed className="w-20 h-20 mx-auto mb-3 text-white/30" />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent-500/20 to-brand-500/20 blur-2xl" />
-                            </div>
-                          </div>
-                          <p className="text-sm text-white font-medium mt-2">Photo coming soon</p>
-                        </div>
-                      </div>
+                    <div className="relative h-full bg-charcoal-800 flex items-center justify-center">
+                      <UtensilsCrossed className="w-16 h-16 text-champagne/20" />
                     </div>
                   )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent" />
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  {/* Item Header */}
+                <div className="p-5 sm:p-6">
                   <div className="flex items-start justify-between gap-3 mb-3">
-                    <h3 className="text-xl font-bold flex-1 text-white leading-tight">{item.name}</h3>
+                    <h3 className="text-lg sm:text-xl font-display text-ivory leading-tight flex-1">
+                      {item.name}
+                    </h3>
                     <div className="flex items-center gap-2 flex-shrink-0">
                       {item.isVegetarian && (
-                        <span className="p-2 bg-green-500/20 rounded-lg border border-green-500/30" title="Vegetarian">
-                          <Leaf className="w-5 h-5 text-green-400" />
+                        <span
+                          className="p-1.5 rounded-full bg-green-500/15 border border-green-500/30"
+                          title="Vegetarian"
+                        >
+                          <Leaf className="w-4 h-4 text-green-400" />
                         </span>
                       )}
                       {item.isVegan && (
-                        <span className="px-3 py-1 bg-blue-500/20 rounded-lg text-xs text-blue-400 font-semibold border border-blue-500/30">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] text-blue-400 font-semibold border border-blue-500/30 bg-blue-500/10">
                           VEGAN
                         </span>
                       )}
                     </div>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-white text-sm leading-relaxed mb-4 line-clamp-2 min-h-[2.5rem]">
+                  <p className="text-champagne/65 text-sm leading-relaxed mb-4 line-clamp-2">
                     {item.description}
                   </p>
 
-                  {/* Spice Level */}
                   {item.spiceLevel && (
                     <div className="mb-4 flex items-center gap-2">
                       {getSpiceLevelIcon(item.spiceLevel)}
-                      <span className="text-xs text-neutral-500 capitalize">{item.spiceLevel}</span>
+                      <span className="text-xs text-champagne/40 capitalize">{item.spiceLevel}</span>
                     </div>
                   )}
 
-                  {/* Price & Button */}
-                  <div className="mt-6 flex items-center justify-between pt-4 border-t border-primary-800/50">
-                    <div>
-                      <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-400">
-                        {formatPrice(item.price)}
-                      </span>
-                    </div>
-                    <button className="px-6 py-2.5 bg-gradient-to-r from-accent-500 to-brand-500 hover:from-accent-400 hover:to-brand-400 text-white rounded-full text-sm font-semibold transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-lg shadow-accent-500/30">
-                      Add to Order
-                    </button>
+                  <div className="flex items-center justify-between pt-4 border-t border-gold-500/15">
+                    <span className="text-xl sm:text-2xl font-display text-gold-300">
+                      {formatPrice(item.price)}
+                    </span>
+                    <a
+                      href={restaurantInfo.social.bolt}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2 rounded-full text-xs font-semibold tracking-wide uppercase bg-gradient-to-r from-accent-600 to-accent-500 text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 shadow-md shadow-accent-500/25 hover:shadow-accent-500/40"
+                    >
+                      Order
+                    </a>
                   </div>
                 </div>
-
-                {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              </div>
+              </article>
             ))}
           </div>
 
-          {/* Call to Action */}
-          <div className="mt-20 text-center">
-            <div className="inline-block p-1 bg-gradient-to-r from-accent-500 via-brand-500 to-brand-500 rounded-2xl">
-              <div className="bg-primary-900 px-12 py-6 rounded-xl">
-                <p className="text-2xl text-white mb-6">
-                  Ready to taste the fusion experience?
-                </p>
-                <a
-                  href="/reservations"
-                  className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-accent-500 to-brand-500 hover:from-accent-400 hover:to-accent-400 text-white rounded-full font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-accent-500/50 md:hover:scale-105"
-                >
-                  <UtensilsCrossed className="w-5 h-5" />
-                  Reserve Your Table
-                </a>
-              </div>
+          {/* CTA */}
+          <div className="mt-20 text-center border border-accent-500/20 p-10 md:p-14 section-red-accent">
+            <p className="font-display text-2xl md:text-3xl text-ivory mb-3">
+              Ready to savour the difference?
+            </p>
+            <p className="text-champagne/60 text-sm mb-8 max-w-md mx-auto">
+              Reserve your table or order delivery — Nairobi&apos;s finest, on your schedule.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <AppButton href="/reservations" variant="primary" icon={<UtensilsCrossed className="w-4 h-4" />}>
+                Reserve Your Table
+              </AppButton>
+              <AppButton href={restaurantInfo.social.bolt} external variant="outline">
+                Order via Bolt
+              </AppButton>
             </div>
           </div>
         </div>
