@@ -4,8 +4,19 @@ import { useState, useEffect, useMemo } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { OptimizedImage } from "@/components/optimized-image";
 import { PageHero } from "@/components/page-hero";
+import { AppButton } from "@/components/ui/app-button";
 import { interiorImages, preloadImages } from "@/lib/images";
 import { galleryCollection, galleryCategories, type GalleryCategory } from "@/lib/pages-data";
+
+function getSpanClasses(span: string) {
+  if (span.includes("col-span-2") && span.includes("row-span-2")) {
+    return "sm:col-span-2 sm:row-span-2 min-h-[280px] sm:min-h-[440px]";
+  }
+  if (span.includes("col-span-2")) {
+    return "sm:col-span-2 min-h-[200px]";
+  }
+  return "min-h-[200px]";
+}
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>("all");
@@ -32,6 +43,28 @@ export default function GalleryPage() {
     setSelectedId(filtered[next].id);
   };
 
+  useEffect(() => {
+    if (!selectedId) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedId(null);
+      if (selectedIndex < 0) return;
+      if (e.key === "ArrowLeft") {
+        const next = (selectedIndex - 1 + filtered.length) % filtered.length;
+        setSelectedId(filtered[next].id);
+      }
+      if (e.key === "ArrowRight") {
+        const next = (selectedIndex + 1) % filtered.length;
+        setSelectedId(filtered[next].id);
+      }
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [selectedId, selectedIndex, filtered]);
+
   return (
     <div className="min-h-screen bg-charcoal-950">
       <PageHero
@@ -42,8 +75,7 @@ export default function GalleryPage() {
         subtitle="A collection of moments — plated delicacies, refined interiors, and the evenings that define TAVO at Rosslyn Square."
       />
 
-      {/* Category Filter */}
-      <section className="sticky top-20 z-40 bg-charcoal-950/95 backdrop-blur-xl border-b border-gold-500/10">
+      <section className="sticky top-20 z-40 bg-charcoal-950/95 backdrop-blur-xl border-b border-accent-500/15">
         <div className="container mx-auto px-4 py-4">
           <div className="flex gap-3 overflow-x-auto scrollbar-hide justify-center">
             {galleryCategories.map((cat) => (
@@ -63,19 +95,19 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Curated Grid */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-7xl">
           <p className="text-center text-champagne/50 text-sm mb-12 tracking-wide">
             {filtered.length} curated {activeCategory === "all" ? "moments" : `${activeCategory} pieces`}
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[220px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {filtered.map((image) => (
               <button
                 key={image.id}
+                type="button"
                 onClick={() => setSelectedId(image.id)}
-                className={`relative overflow-hidden group text-left ${image.span}`}
+                className={`relative overflow-hidden group text-left border border-gold-500/10 hover:border-accent-500/40 transition-colors ${getSpanClasses(image.span)}`}
               >
                 <OptimizedImage
                   src={image.src}
@@ -84,26 +116,36 @@ export default function GalleryPage() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   variant="galleryThumb"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-charcoal-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <p className="text-gold-400 text-xs tracking-[0.15em] uppercase mb-1">{image.category}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-charcoal-950/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <p className="text-accent-400 text-xs tracking-[0.15em] uppercase mb-1">{image.category}</p>
                   <p className="text-ivory font-display text-sm md:text-base">{image.title}</p>
+                  <p className="text-champagne/50 text-xs mt-1 line-clamp-1 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:block">
+                    {image.caption}
+                  </p>
                 </div>
               </button>
             ))}
           </div>
+
+          <div className="mt-16 text-center">
+            <AppButton href="/reservations" variant="primary">
+              Reserve Your Table
+            </AppButton>
+          </div>
         </div>
       </section>
 
-      {/* Lightbox */}
       {selected && (
         <div
-          className="fixed inset-0 bg-charcoal-950/95 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-charcoal-950/95 z-[70] flex items-center justify-center p-4"
           onClick={() => setSelectedId(null)}
+          role="dialog"
+          aria-modal="true"
         >
           <button
             onClick={() => setSelectedId(null)}
-            className="absolute top-6 right-6 text-champagne/60 hover:text-gold-400 transition-colors z-10"
+            className="absolute top-6 right-6 text-champagne/60 hover:text-accent-400 transition-colors z-10 p-2 rounded-full hover:bg-white/5"
             aria-label="Close"
           >
             <X className="w-8 h-8" />
@@ -111,7 +153,7 @@ export default function GalleryPage() {
 
           <button
             onClick={(e) => { e.stopPropagation(); navigate(-1); }}
-            className="absolute left-4 md:left-8 text-champagne/60 hover:text-gold-400 transition-colors z-10"
+            className="absolute left-4 md:left-8 text-champagne/60 hover:text-accent-400 transition-colors z-10 p-2 rounded-full hover:bg-white/5"
             aria-label="Previous"
           >
             <ChevronLeft className="w-8 h-8" />
@@ -119,28 +161,25 @@ export default function GalleryPage() {
 
           <button
             onClick={(e) => { e.stopPropagation(); navigate(1); }}
-            className="absolute right-4 md:right-8 text-champagne/60 hover:text-gold-400 transition-colors z-10"
+            className="absolute right-4 md:right-8 text-champagne/60 hover:text-accent-400 transition-colors z-10 p-2 rounded-full hover:bg-white/5"
             aria-label="Next"
           >
             <ChevronRight className="w-8 h-8" />
           </button>
 
-          <div
-            className="max-w-5xl w-full"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="relative aspect-[16/10] overflow-hidden border border-gold-500/20">
+          <div className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="relative aspect-[16/10] overflow-hidden border border-gold-500/25 bg-charcoal-900">
               <OptimizedImage
                 src={selected.src}
                 alt={selected.alt}
                 fill
-                className="object-contain bg-charcoal-900"
+                className="object-contain"
                 variant="galleryLightbox"
                 priority
               />
             </div>
-            <div className="mt-6 text-center">
-              <p className="text-gold-400 text-xs tracking-[0.2em] uppercase mb-2">{selected.category}</p>
+            <div className="mt-6 text-center px-4">
+              <p className="text-accent-400 text-xs tracking-[0.2em] uppercase mb-2">{selected.category}</p>
               <h3 className="font-display text-2xl text-ivory mb-2">{selected.title}</h3>
               <p className="text-champagne/70 text-sm max-w-lg mx-auto">{selected.caption}</p>
             </div>

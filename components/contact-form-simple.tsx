@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, User, MessageSquare, Calendar, Clock } from "lucide-react";
+import { Mail, Phone, User, MessageSquare } from "lucide-react";
+import {
+  formShellClass,
+  formLabelClass,
+  formInputClass,
+  formInputWithIconClass,
+  formSubmitClass,
+} from "@/lib/form-styles";
 
 interface ContactFormData {
   name: string;
@@ -68,11 +75,11 @@ Sent from TAVO Restaurant Contact Form
   };
 
   return (
-    <form onSubmit={handleSubmit} className="glass-effect p-8 md:p-12 rounded-2xl border border-accent-500/20">
+    <form onSubmit={handleSubmit} className={formShellClass}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Name */}
         <div>
-          <label htmlFor="name" className="block text-sm font-semibold mb-2 text-white">
+          <label htmlFor="name" className={formLabelClass}>
             Full Name *
           </label>
           <div className="relative">
@@ -84,7 +91,7 @@ Sent from TAVO Restaurant Contact Form
               required
               value={formData.name}
               onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white"
+              className={formInputWithIconClass}
               placeholder="Your Name"
             />
           </div>
@@ -92,7 +99,7 @@ Sent from TAVO Restaurant Contact Form
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold mb-2 text-white">
+          <label htmlFor="email" className={formLabelClass}>
             Email Address *
           </label>
           <div className="relative">
@@ -104,7 +111,7 @@ Sent from TAVO Restaurant Contact Form
               required
               value={formData.email}
               onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white"
+              className={formInputWithIconClass}
               placeholder="your.email@example.com"
             />
           </div>
@@ -114,7 +121,7 @@ Sent from TAVO Restaurant Contact Form
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Phone */}
         <div>
-          <label htmlFor="phone" className="block text-sm font-semibold mb-2 text-white">
+          <label htmlFor="phone" className={formLabelClass}>
             Phone Number
           </label>
           <div className="relative">
@@ -125,7 +132,7 @@ Sent from TAVO Restaurant Contact Form
               type="tel"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white"
+              className={formInputWithIconClass}
               placeholder="+254 700 000 000"
             />
           </div>
@@ -133,7 +140,7 @@ Sent from TAVO Restaurant Contact Form
 
         {/* Subject */}
         <div>
-          <label htmlFor="subject" className="block text-sm font-semibold mb-2 text-white">
+          <label htmlFor="subject" className={formLabelClass}>
             Subject *
           </label>
           <input
@@ -143,7 +150,7 @@ Sent from TAVO Restaurant Contact Form
             required
             value={formData.subject}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white"
+            className={`${formInputClass} px-4`}
             placeholder="How can we help you?"
           />
         </div>
@@ -151,7 +158,7 @@ Sent from TAVO Restaurant Contact Form
 
       {/* Message */}
       <div className="mb-6">
-        <label htmlFor="message" className="block text-sm font-semibold mb-2 text-white">
+        <label htmlFor="message" className={formLabelClass}>
           Message *
         </label>
         <div className="relative">
@@ -163,7 +170,7 @@ Sent from TAVO Restaurant Contact Form
             rows={6}
             value={formData.message}
             onChange={handleChange}
-            className="w-full pl-12 pr-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white resize-none"
+            className={`${formInputWithIconClass} resize-none`}
             placeholder="Tell us more about your inquiry..."
           />
         </div>
@@ -174,7 +181,7 @@ Sent from TAVO Restaurant Contact Form
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-8 py-4 bg-gradient-to-r from-accent-500 to-brand-500 hover:from-accent-400 hover:to-brand-400 disabled:from-gray-500 disabled:to-gray-600 text-white rounded-full font-bold transition-all duration-300 hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center gap-3 mx-auto"
+          className={formSubmitClass}
         >
           {isSubmitting ? (
             <>

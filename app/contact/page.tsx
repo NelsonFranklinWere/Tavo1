@@ -63,15 +63,15 @@ export default function ContactPage() {
                         <br />
                         {restaurantInfo.address.city}, {restaurantInfo.address.country}
                       </p>
-                      <a
+                      <AppButton
                         href={restaurantInfo.social.google}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 mt-4 text-gold-400 hover:text-gold-300 text-xs tracking-wider uppercase transition-colors"
+                        external
+                        variant="outline"
+                        className="!mt-4 !py-2 !px-5 !text-[10px]"
+                        icon={<Navigation className="w-3 h-3" />}
                       >
-                        <Navigation className="w-3 h-3" />
                         Directions
-                      </a>
+                      </AppButton>
                     </>
                   ),
                 },

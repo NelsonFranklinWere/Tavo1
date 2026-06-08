@@ -1,123 +1,100 @@
 "use client";
 
-import { Calendar, Clock, Users, Phone, Mail, MessageSquare, CheckCircle, Star, MapPin } from "lucide-react";
+import { Clock, MapPin, Star, Phone, MessageSquare, Mail } from "lucide-react";
 import { restaurantInfo } from "@/lib/data";
-import { OptimizedImage } from "@/components/optimized-image";
 import { heroImages } from "@/lib/images";
+import { PageHero } from "@/components/page-hero";
+import { AppButton } from "@/components/ui/app-button";
 import { ReservationFormSimple } from "@/components/reservation-form-simple";
 
 export default function ReservationsPage() {
+  const whatsappUrl = `https://wa.me/${restaurantInfo.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Hello TAVO! I would like to reserve a table.")}`;
+
   return (
-    <div className="min-h-screen pt-20 pb-20">
-      {/* Header */}
-      <section className="py-16 bg-gradient-modern relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <OptimizedImage
-            src={heroImages.reservations}
-            alt="TAVO Restaurant Reservations"
-            fill
-            className="object-cover"
-            variant="hero"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-brand-500">
-            Reserve Your Table
-          </h1>
-          <p className="text-xl text-white max-w-2xl mx-auto">
-            Experience Nairobi&apos;s most refined dining at TAVO
-          </p>
+    <div className="min-h-screen bg-charcoal-950">
+      <PageHero
+        image={heroImages.reservations}
+        imageAlt="TAVO Restaurant Reservations"
+        eyebrow="Book Your Evening"
+        title="Reserve Your Table"
+        subtitle="Experience Nairobi's most refined dining at TAVO — Rosslyn Square."
+      />
+
+      {/* Quick booking */}
+      <section className="py-10 border-b border-accent-500/15 section-red-accent">
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <AppButton href={whatsappUrl} external variant="primary" icon={<MessageSquare className="w-4 h-4" />}>
+            WhatsApp to Book
+          </AppButton>
+          <AppButton href={`tel:${restaurantInfo.phone}`} external variant="outline" icon={<Phone className="w-4 h-4" />}>
+            Call Us to Book
+          </AppButton>
         </div>
       </section>
 
-      {/* Quick Booking Options */}
-      <section className="py-8 bg-primary-800">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-row gap-4 justify-center items-center">
-            <a
-              href={`https://wa.me/${restaurantInfo.whatsapp.replace(/[^0-9]/g, '')}`}
-              className="flex items-center gap-3 px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-full font-bold transition-all duration-300 md:hover:scale-105"
-            >
-              <MessageSquare className="w-5 h-5" />
-              WhatsApp to Book
-            </a>
-            <a
-              href={`tel:${restaurantInfo.phone}`}
-              className="flex items-center gap-3 px-8 py-4 bg-accent-600 hover:bg-accent-500 text-white rounded-full font-bold transition-all duration-300 md:hover:scale-105"
-            >
-              <Phone className="w-5 h-5" />
-              Call Us to Book
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Form Section */}
-      <section className="py-12">
+      {/* Form */}
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-3xl">
+          <div className="text-center mb-10">
+            <p className="text-accent-400 text-xs tracking-[0.3em] uppercase mb-3">Online Request</p>
+            <h2 className="font-display text-3xl text-ivory">Reservation Form</h2>
+            <p className="text-champagne/60 text-sm mt-3">We&apos;ll confirm your table shortly.</p>
+          </div>
           <ReservationFormSimple />
         </div>
       </section>
 
-      {/* Restaurant Info */}
-      <section className="py-12 bg-primary-800">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
-            <div className="text-center p-6 bg-primary-800/30 rounded-2xl border border-accent-500/20">
-              <Clock className="w-12 h-12 text-accent-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-white">Opening Hours</h3>
-              <p className="text-white">{restaurantInfo.hours.mon_thu}</p>
-              <p className="text-white">{restaurantInfo.hours.fri_sun}</p>
-            </div>
-            <div className="text-center p-6 bg-primary-800/30 rounded-2xl border border-accent-500/20">
-              <MapPin className="w-12 h-12 text-accent-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-white">Location</h3>
-              <p className="text-white">{restaurantInfo.address.street}</p>
-              <p className="text-white">{restaurantInfo.address.city}</p>
-            </div>
-            <div className="text-center p-6 bg-primary-800/30 rounded-2xl border border-accent-500/20 col-span-2 md:col-span-1">
-              <Star className="w-12 h-12 text-accent-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-white">Special Requests</h3>
-              <p className="text-white">Dietary restrictions, celebrations, or special occasions</p>
-            </div>
+      {/* Info cards */}
+      <section className="py-16 bg-charcoal-900 border-y border-gold-500/10">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Clock,
+                title: "Opening Hours",
+                lines: [restaurantInfo.hours.mon_thu, restaurantInfo.hours.fri_sun],
+              },
+              {
+                icon: MapPin,
+                title: "Location",
+                lines: [restaurantInfo.address.street, restaurantInfo.address.city],
+              },
+              {
+                icon: Star,
+                title: "Special Requests",
+                lines: ["Dietary needs, celebrations,", "and bespoke occasions welcome."],
+              },
+            ].map((card) => (
+              <div
+                key={card.title}
+                className="text-center p-8 border border-gold-500/15 hover:border-accent-500/30 transition-colors"
+              >
+                <card.icon className="w-8 h-8 text-accent-400 mx-auto mb-4" strokeWidth={1.5} />
+                <h3 className="font-display text-xl text-ivory mb-3">{card.title}</h3>
+                {card.lines.map((line) => (
+                  <p key={line} className="text-champagne/65 text-sm">{line}</p>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Info */}
-      <section className="py-12 bg-gradient-to-r from-accent-500 to-brand-500">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-white">Need Immediate Assistance?</h2>
-          <p className="text-white/90 mb-8">Our team is ready to help you with your reservation</p>
-          <div className="flex flex-col gap-4 items-center">
-            <div className="flex flex-row gap-4 justify-center items-center">
-              <a
-                href={`tel:${restaurantInfo.phone}`}
-                className="px-8 py-4 bg-primary-900 hover:bg-primary-800 text-accent-400 rounded-full font-bold transition-all duration-300 md:hover:scale-105 flex items-center justify-center gap-2"
-              >
-                <Phone className="w-5 h-5" />
-                Call Us
-              </a>
-              <a
-                href={`https://wa.me/${restaurantInfo.whatsapp.replace(/[^0-9]/g, '')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-full font-bold transition-all duration-300 md:hover:scale-105 flex items-center justify-center gap-2"
-              >
-                <MessageSquare className="w-5 h-5" />
-                WhatsApp
-              </a>
-            </div>
-            <a
-              href={`mailto:${restaurantInfo.email}`}
-              className="px-8 py-4 bg-primary-700 hover:bg-primary-600 text-white rounded-full font-bold transition-all duration-300 md:hover:scale-105 flex items-center justify-center gap-2"
-            >
-              <Mail className="w-5 h-5" />
+      {/* Assistance CTA */}
+      <section className="py-20 section-red-accent border-t border-accent-500/15">
+        <div className="container mx-auto px-4 max-w-2xl text-center">
+          <h2 className="font-display text-3xl text-ivory mb-4">Need Immediate Assistance?</h2>
+          <p className="text-champagne/65 mb-8">Our team is ready to help with your reservation.</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <AppButton href={`tel:${restaurantInfo.phone}`} external variant="primary" icon={<Phone className="w-4 h-4" />}>
+              Call Us
+            </AppButton>
+            <AppButton href={whatsappUrl} external variant="outline" icon={<MessageSquare className="w-4 h-4" />}>
+              WhatsApp
+            </AppButton>
+            <AppButton href={`mailto:${restaurantInfo.email}`} external variant="outline" icon={<Mail className="w-4 h-4" />}>
               Email Us
-            </a>
+            </AppButton>
           </div>
         </div>
       </section>

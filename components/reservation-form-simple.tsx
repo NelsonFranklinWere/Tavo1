@@ -2,6 +2,13 @@
 
 import { useState } from "react";
 import { Mail, Phone, User, Calendar, Clock, Users } from "lucide-react";
+import {
+  formShellClass,
+  formLabelClass,
+  formInputClass,
+  formInputWithIconClass,
+  formSubmitClass,
+} from "@/lib/form-styles";
 
 interface ReservationFormData {
   name: string;
@@ -28,7 +35,7 @@ export function ReservationFormSimple() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -37,7 +44,6 @@ export function ReservationFormSimple() {
     setSubmitStatus("idle");
 
     try {
-      // Create mailto link with pre-filled reservation content
       const subject = encodeURIComponent(`Reservation Request - ${formData.date} at ${formData.time}`);
       const body = encodeURIComponent(`
 RESERVATION REQUEST
@@ -57,20 +63,11 @@ ${formData.message}
 ---
 Sent from TAVO Restaurant Reservation Form
       `);
-      
-      const mailtoLink = `mailto:strivego4@gmail.com?subject=${subject}&body=${body}`;
-      window.location.href = mailtoLink;
-      
+
+      window.location.href = `mailto:strivego4@gmail.com?subject=${subject}&body=${body}`;
+
       setSubmitStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        date: "",
-        time: "",
-        guests: "",
-        message: "",
-      });
+      setFormData({ name: "", email: "", phone: "", date: "", time: "", guests: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitStatus("error");
@@ -79,100 +76,48 @@ Sent from TAVO Restaurant Reservation Form
     }
   };
 
-  // Get tomorrow's date for minimum date
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  const minDate = tomorrow.toISOString().split('T')[0];
+  const minDate = tomorrow.toISOString().split("T")[0];
+
+  const iconClass = "absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-accent-400";
 
   return (
-    <form onSubmit={handleSubmit} className="glass-effect p-8 md:p-12 rounded-2xl border border-accent-500/20">
+    <form onSubmit={handleSubmit} className={formShellClass}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        {/* Name */}
         <div>
-          <label htmlFor="name" className="block text-sm font-semibold mb-2 text-white">
-            Full Name *
-          </label>
+          <label htmlFor="name" className={formLabelClass}>Full Name *</label>
           <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-accent-500" />
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white"
-              placeholder="Your Name"
-            />
+            <User className={iconClass} />
+            <input id="name" name="name" type="text" required value={formData.name} onChange={handleChange} className={formInputWithIconClass} placeholder="Your Name" />
           </div>
         </div>
-
-        {/* Email */}
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold mb-2 text-white">
-            Email Address *
-          </label>
+          <label htmlFor="email" className={formLabelClass}>Email Address *</label>
           <div className="relative">
-            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-accent-500" />
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white"
-              placeholder="youremail@gmail.com"
-            />
+            <Mail className={iconClass} />
+            <input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} className={formInputWithIconClass} placeholder="youremail@gmail.com" />
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        {/* Phone */}
         <div>
-          <label htmlFor="phone" className="block text-sm font-semibold mb-2 text-white">
-            Phone Number *
-          </label>
+          <label htmlFor="phone" className={formLabelClass}>Phone Number *</label>
           <div className="relative">
-            <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-accent-500" />
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              required
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white"
-              placeholder="Your Phone Number"
-            />
+            <Phone className={iconClass} />
+            <input id="phone" name="phone" type="tel" required value={formData.phone} onChange={handleChange} className={formInputWithIconClass} placeholder="+254 700 000 000" />
           </div>
         </div>
-
-        {/* Number of Guests */}
         <div>
-          <label htmlFor="guests" className="block text-sm font-semibold mb-2 text-white">
-            Number of Guests *
-          </label>
+          <label htmlFor="guests" className={formLabelClass}>Number of Guests *</label>
           <div className="relative">
-            <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-accent-500" />
-            <select
-              id="guests"
-              name="guests"
-              required
-              value={formData.guests}
-              onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white appearance-none"
-            >
+            <Users className={iconClass} />
+            <select id="guests" name="guests" required value={formData.guests} onChange={handleChange} className={`${formInputWithIconClass} appearance-none`}>
               <option value="">Select guests</option>
-              <option value="1">1 Guest</option>
-              <option value="2">2 Guests</option>
-              <option value="3">3 Guests</option>
-              <option value="4">4 Guests</option>
-              <option value="5">5 Guests</option>
-              <option value="6">6 Guests</option>
-              <option value="7">7 Guests</option>
-              <option value="8">8 Guests</option>
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                <option key={n} value={String(n)}>{n} Guest{n > 1 ? "s" : ""}</option>
+              ))}
               <option value="9+">9+ Guests</option>
             </select>
           </div>
@@ -180,94 +125,37 @@ Sent from TAVO Restaurant Reservation Form
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        {/* Date */}
         <div>
-          <label htmlFor="date" className="block text-sm font-semibold mb-2 text-white">
-            Preferred Date *
-          </label>
+          <label htmlFor="date" className={formLabelClass}>Preferred Date *</label>
           <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-accent-500" />
-            <input
-              id="date"
-              name="date"
-              type="date"
-              required
-              min={minDate}
-              value={formData.date}
-              onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white"
-            />
+            <Calendar className={iconClass} />
+            <input id="date" name="date" type="date" required min={minDate} value={formData.date} onChange={handleChange} className={formInputWithIconClass} />
           </div>
         </div>
-
-        {/* Time */}
         <div>
-          <label htmlFor="time" className="block text-sm font-semibold mb-2 text-white">
-            Preferred Time *
-          </label>
+          <label htmlFor="time" className={formLabelClass}>Preferred Time *</label>
           <div className="relative">
-            <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-accent-500" />
-            <select
-              id="time"
-              name="time"
-              required
-              value={formData.time}
-              onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white appearance-none"
-            >
+            <Clock className={iconClass} />
+            <select id="time" name="time" required value={formData.time} onChange={handleChange} className={`${formInputWithIconClass} appearance-none`}>
               <option value="">Select time</option>
-              <option value="12:00 PM">12:00 PM</option>
-              <option value="12:30 PM">12:30 PM</option>
-              <option value="1:00 PM">1:00 PM</option>
-              <option value="1:30 PM">1:30 PM</option>
-              <option value="2:00 PM">2:00 PM</option>
-              <option value="2:30 PM">2:30 PM</option>
-              <option value="3:00 PM">3:00 PM</option>
-              <option value="3:30 PM">3:30 PM</option>
-              <option value="4:00 PM">4:00 PM</option>
-              <option value="4:30 PM">4:30 PM</option>
-              <option value="5:00 PM">5:00 PM</option>
-              <option value="5:30 PM">5:30 PM</option>
-              <option value="6:00 PM">6:00 PM</option>
-              <option value="6:30 PM">6:30 PM</option>
-              <option value="7:00 PM">7:00 PM</option>
-              <option value="7:30 PM">7:30 PM</option>
-              <option value="8:00 PM">8:00 PM</option>
-              <option value="8:30 PM">8:30 PM</option>
-              <option value="9:00 PM">9:00 PM</option>
-              <option value="9:30 PM">9:30 PM</option>
-              <option value="10:00 PM">10:00 PM</option>
+              {["12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM"].map((t) => (
+                <option key={t} value={t}>{t}</option>
+              ))}
             </select>
           </div>
         </div>
       </div>
 
-      {/* Special Requests */}
       <div className="mb-6">
-        <label htmlFor="message" className="block text-sm font-semibold mb-2 text-white">
-          Special Requests or Notes
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={4}
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full px-4 py-3 bg-primary-800 border border-accent-500/20 rounded-lg focus:outline-none focus:border-accent-500 transition-colors text-white resize-none"
-          placeholder="Any special dietary requirements, occasion details, or preferences..."
-        />
+        <label htmlFor="message" className={formLabelClass}>Special Requests or Notes</label>
+        <textarea id="message" name="message" rows={4} value={formData.message} onChange={handleChange} className={`${formInputClass} px-4 resize-none`} placeholder="Dietary requirements, occasion details, preferences..." />
       </div>
 
-      {/* Submit Button */}
       <div className="text-center">
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="px-8 py-4 bg-gradient-to-r from-accent-500 to-brand-500 hover:from-accent-400 hover:to-brand-400 disabled:from-gray-500 disabled:to-gray-600 text-white rounded-full font-bold transition-all duration-300 hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center gap-3 mx-auto"
-        >
+        <button type="submit" disabled={isSubmitting} className={formSubmitClass}>
           {isSubmitting ? (
             <>
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
               Opening Email...
             </>
           ) : (
@@ -279,20 +167,15 @@ Sent from TAVO Restaurant Reservation Form
         </button>
       </div>
 
-      {/* Status Messages */}
       {submitStatus === "success" && (
-        <div className="mt-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-center">
-          <p className="text-green-400 font-medium">
-            ✅ Your email client should open with a pre-filled reservation request. Please send the email to confirm your booking.
-          </p>
+        <div className="mt-6 p-4 bg-green-500/15 border border-green-500/40 rounded-xl text-center">
+          <p className="text-green-400 text-sm">Your email client should open with your reservation request.</p>
         </div>
       )}
 
       {submitStatus === "error" && (
-        <div className="mt-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-center">
-          <p className="text-red-400 font-medium">
-            ❌ There was an error. Please try again or call us directly at +254 700 000 000.
-          </p>
+        <div className="mt-6 p-4 bg-accent-500/15 border border-accent-500/40 rounded-xl text-center">
+          <p className="text-accent-300 text-sm">Something went wrong. Please call us directly.</p>
         </div>
       )}
     </form>
