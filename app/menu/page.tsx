@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { menuItems, restaurantInfo } from "@/lib/data";
 import { OptimizedImage } from "@/components/optimized-image";
 import { heroImages, preloadImages } from "@/lib/images";
-import { MenuCategory } from "@/lib/types";
+import { MenuCategory, MenuItem } from "@/lib/types";
+import { formatMenuPrice } from "@/lib/order-links";
 import { UtensilsCrossed, Leaf, Flame } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { AppButton } from "@/components/ui/app-button";
+import { OrderPromptModal } from "@/components/order-prompt-modal";
 
 const categories: { id: MenuCategory; label: string }[] = [
   { id: "starters", label: "Starters" },
@@ -22,6 +24,7 @@ const uniqueMenuImages = Array.from(
 
 export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState<MenuCategory>("starters");
+  const [orderItem, setOrderItem] = useState<MenuItem | null>(null);
 
   useEffect(() => {
     preloadImages(uniqueMenuImages);
@@ -29,7 +32,8 @@ export default function MenuPage() {
 
   const filteredItems = menuItems.filter((item) => item.category === activeCategory);
 
-  const formatPrice = (price: number) => `KES ${price.toLocaleString()}`;
+  const openOrderPrompt = (item: MenuItem) => setOrderItem(item);
+  const closeOrderPrompt = () => setOrderItem(null);
 
   const getSpiceLevelIcon = (level?: "mild" | "medium" | "hot") => {
     if (!level) return null;
@@ -79,15 +83,25 @@ export default function MenuPage() {
         <div className="container mx-auto px-4 max-w-7xl">
           <p className="text-center text-champagne/50 text-sm tracking-wide mb-10">
             {filteredItems.length} delicacies · {categories.find((c) => c.id === activeCategory)?.label}
+            <span className="hidden sm:inline"> · Tap a dish to order</span>
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredItems.map((item) => (
               <article
                 key={item.id}
-                className="group relative bg-charcoal-900/60 border border-gold-500/15 hover:border-accent-500/40 overflow-hidden transition-all duration-300 hover:shadow-red-lg"
+                role="button"
+                tabIndex={0}
+                onClick={() => openOrderPrompt(item)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    openOrderPrompt(item);
+                  }
+                }}
+                className="group relative bg-charcoal-900/60 border border-gold-500/15 hover:border-accent-500/40 overflow-hidden transition-all duration-300 hover:shadow-red-lg cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
               >
-                <div className="relative h-52 sm:h-56 overflow-hidden">
+                <div className="relative h-52 sm:h-56 overflow-hidden pointer-events-none">
                   {item.image ? (
                     <OptimizedImage
                       src={item.image}
@@ -104,7 +118,7 @@ export default function MenuPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent" />
                 </div>
 
-                <div className="p-5 sm:p-6">
+                <div className="p-5 sm:p-6 pointer-events-none">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <h3 className="text-lg sm:text-xl font-display text-ivory leading-tight flex-1">
                       {item.name}
@@ -139,16 +153,11 @@ export default function MenuPage() {
 
                   <div className="flex items-center justify-between pt-4 border-t border-gold-500/15">
                     <span className="text-xl sm:text-2xl font-display text-gold-300">
-                      {formatPrice(item.price)}
+                      {formatMenuPrice(item.price)}
                     </span>
-                    <a
-                      href={restaurantInfo.social.bolt}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2 rounded-full text-xs font-semibold tracking-wide uppercase bg-gradient-to-r from-accent-600 to-accent-500 text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 shadow-md shadow-accent-500/25 hover:shadow-accent-500/40"
-                    >
+                    <span className="px-5 py-2 rounded-full text-xs font-semibold tracking-wide uppercase bg-gradient-to-r from-accent-600 to-accent-500 text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 shadow-md shadow-accent-500/25">
                       Order
-                    </a>
+                    </span>
                   </div>
                 </div>
               </article>
@@ -174,6 +183,8 @@ export default function MenuPage() {
           </div>
         </div>
       </section>
+
+      <OrderPromptModal item={orderItem} onClose={closeOrderPrompt} />
     </div>
   );
 }
