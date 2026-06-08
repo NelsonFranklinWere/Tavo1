@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { Calendar, Clock, Users, Phone, Mail, MessageSquare, CheckCircle, Star, MapPin } from "lucide-react";
 import { restaurantInfo } from "@/lib/data";
+import { OptimizedImage } from "@/components/optimized-image";
+import { heroImages } from "@/lib/images";
 import { ReservationFormSimple } from "@/components/reservation-form-simple";
 
 export default function ReservationsPage() {
@@ -12,12 +13,12 @@ export default function ReservationsPage() {
       <section className="py-16 bg-gradient-modern relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/hero/heroimageresevation page.png"
+          <OptimizedImage
+            src={heroImages.reservations}
             alt="TAVO Restaurant Reservations"
             fill
             className="object-cover"
-            priority
+            variant="hero"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
         </div>

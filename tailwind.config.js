@@ -8,6 +8,31 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        gold: {
+          50: '#FBF6EB',
+          100: '#F5ECD4',
+          200: '#E8D5A3',
+          300: '#D4B86A',
+          400: '#C9A962',
+          500: '#B8943F',
+          600: '#9A7A32',
+          700: '#7A6128',
+          800: '#5C491E',
+          900: '#3D3014',
+        },
+        ivory: '#F8F4EE',
+        champagne: '#E8E0D4',
+        charcoal: {
+          50: '#F5F5F5',
+          100: '#E5E5E5',
+          800: '#1A1A1A',
+          900: '#111111',
+          950: '#0C0C0C',
+        },
+        wine: {
+          500: '#6B2737',
+          600: '#5A2030',
+        },
         primary: {
           50: '#ffffff',
           100: '#f8f8f8',
@@ -46,8 +71,26 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['var(--font-playfair)', 'serif'],
+        display: ['var(--font-cormorant)', 'var(--font-playfair)', 'serif'],
         body: ['var(--font-inter)', 'sans-serif'],
+      },
+      boxShadow: {
+        'gold-lg': '0 20px 50px rgba(201, 169, 98, 0.15)',
+        'gold-glow': '0 0 40px rgba(201, 169, 98, 0.2)',
+      },
+      animation: {
+        marquee: 'marquee 40s linear infinite',
+        'bounce-slow': 'bounceSlow 2.5s ease-in-out infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        bounceSlow: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(8px)' },
+        },
       },
       backgroundImage: {
         'gradient-brand': 'linear-gradient(135deg, #000000 0%, #DC2626 50%, #EA580C 100%)',

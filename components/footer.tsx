@@ -4,113 +4,88 @@ import { restaurantInfo } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer className="bg-primary-900 text-white border-t-4 border-accent-500 relative z-50">
-      <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-12">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-2">
-            <h3 className="text-2xl sm:text-3xl font-bold font-display text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-brand-500 mb-4">
-              TAVO
-            </h3>
-            <p className="text-neutral-300 mb-4 max-w-md">
-              {restaurantInfo.description}
+    <footer className="bg-charcoal-950 text-ivory border-t border-gold-500/20 relative z-50">
+      <div className="container mx-auto px-4 py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+          <div className="md:col-span-5">
+            <h3 className="font-display text-3xl text-gradient-gold tracking-[0.15em] mb-6">TAVO</h3>
+            <p className="text-champagne/70 mb-6 max-w-md leading-relaxed text-sm">
+              Nairobi&apos;s address for delicacies. Nestled in Rosslyn Square, TAVO delivers
+              the refined dining experience expected at the city&apos;s finest hotels —
+              where every dish tells a story and every visit feels like home.
             </p>
             <div className="flex gap-4">
               <a
                 href={restaurantInfo.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-primary-800 hover:bg-accent-500 transition-colors"
+                className="p-2.5 border border-gold-500/25 hover:border-gold-500/50 hover:bg-gold-500/10 transition-all"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5 text-white" />
+                <Instagram className="w-4 h-4 text-gold-400" />
               </a>
               <a
                 href={restaurantInfo.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-primary-800 hover:bg-accent-500 transition-colors"
+                className="p-2.5 border border-gold-500/25 hover:border-gold-500/50 hover:bg-gold-500/10 transition-all"
                 aria-label="Facebook"
               >
-                <Facebook className="w-5 h-5 text-white" />
+                <Facebook className="w-4 h-4 text-gold-400" />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-base sm:text-lg font-semibold text-white mb-4">Quick Links</h4>
-            <ul className="space-y-1 sm:space-y-2">
-              <li>
-                <Link href="/" className="text-neutral-300 hover:text-accent-400 transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-neutral-300 hover:text-accent-400 transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/menu" className="text-neutral-300 hover:text-accent-400 transition-colors">
-                  Menu
-                </Link>
-              </li>
-              <li>
-                <Link href="/events" className="text-neutral-300 hover:text-accent-400 transition-colors">
-                  Events
-                </Link>
-              </li>
-              <li>
-                <Link href="/reservations" className="text-neutral-300 hover:text-accent-400 transition-colors">
-                  Reservations
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-neutral-300 hover:text-accent-400 transition-colors">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <a 
-                  href={restaurantInfo.social.bolt} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-neutral-300 hover:text-accent-400 transition-colors"
-                >
-                  Order Food
-                </a>
-              </li>
+          <div className="md:col-span-3">
+            <h4 className="text-xs tracking-[0.25em] uppercase text-gold-400 mb-6">Explore</h4>
+            <ul className="space-y-3">
+              {[
+                { href: "/", label: "Home" },
+                { href: "/about", label: "About" },
+                { href: "/menu", label: "Menu" },
+                { href: "/gallery", label: "Gallery" },
+                { href: "/events", label: "Events" },
+                { href: "/reservations", label: "Reservations" },
+                { href: "/contact", label: "Contact" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-champagne/60 hover:text-gold-300 text-sm transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-base sm:text-lg font-semibold text-white mb-4">Contact</h4>
-            <ul className="space-y-2 sm:space-y-3">
-              <li className="flex items-start gap-2">
-                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-accent-500" />
-                <span className="text-sm text-neutral-300">
+          <div className="md:col-span-4">
+            <h4 className="text-xs tracking-[0.25em] uppercase text-gold-400 mb-6">Visit Us</h4>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 mt-1 flex-shrink-0 text-gold-500" />
+                <span className="text-sm text-champagne/70">
                   {restaurantInfo.address.street}
                   <br />
-                  {restaurantInfo.address.city}
+                  {restaurantInfo.address.city}, {restaurantInfo.address.country}
                 </span>
               </li>
-              <li className="flex items-center gap-2">
-                <Phone className="w-5 h-5 flex-shrink-0 text-accent-500" />
-                <a href={`tel:${restaurantInfo.phone}`} className="text-neutral-300 hover:text-accent-400 transition-colors">
+              <li className="flex items-center gap-3">
+                <Phone className="w-4 h-4 flex-shrink-0 text-gold-500" />
+                <a href={`tel:${restaurantInfo.phone}`} className="text-sm text-champagne/70 hover:text-gold-300 transition-colors">
                   {restaurantInfo.phone}
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="w-5 h-5 flex-shrink-0 text-accent-500" />
-                <a href={`mailto:${restaurantInfo.email}`} className="text-neutral-300 hover:text-accent-400 transition-colors">
+              <li className="flex items-center gap-3">
+                <Mail className="w-4 h-4 flex-shrink-0 text-gold-500" />
+                <a href={`mailto:${restaurantInfo.email}`} className="text-sm text-champagne/70 hover:text-gold-300 transition-colors">
                   {restaurantInfo.email}
                 </a>
               </li>
-              <li className="flex items-start gap-2">
-                <Clock className="w-5 h-5 mt-0.5 flex-shrink-0 text-accent-500" />
-                <div className="text-sm text-neutral-300">
+              <li className="flex items-start gap-3">
+                <Clock className="w-4 h-4 mt-1 flex-shrink-0 text-gold-500" />
+                <div className="text-sm text-champagne/70">
                   <p>{restaurantInfo.hours.mon_thu}</p>
                   <p>{restaurantInfo.hours.fri_sun}</p>
                 </div>
@@ -119,19 +94,17 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-primary-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-neutral-400">
-              © {new Date().getFullYear()} TAVO Restaurant. All rights reserved.
-            </p>
-            <div className="flex gap-6 text-sm">
-              <Link href="/privacy" className="text-neutral-400 hover:text-accent-400 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-neutral-400 hover:text-accent-400 transition-colors">
-                Terms of Service
-              </Link>
-            </div>
+        <div className="border-t border-gold-500/15 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-champagne/40 tracking-wide">
+            © {new Date().getFullYear()} TAVO Restaurant · Rosslyn Square, Nairobi
+          </p>
+          <div className="flex gap-8 text-xs">
+            <Link href="/privacy" className="text-champagne/40 hover:text-gold-400 transition-colors">
+              Privacy
+            </Link>
+            <Link href="/terms" className="text-champagne/40 hover:text-gold-400 transition-colors">
+              Terms
+            </Link>
           </div>
         </div>
       </div>

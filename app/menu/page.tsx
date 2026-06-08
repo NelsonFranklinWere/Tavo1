@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { useState, useEffect } from "react";
 import { menuItems } from "@/lib/data";
+import { OptimizedImage } from "@/components/optimized-image";
+import { heroImages, preloadImages } from "@/lib/images";
 import { MenuCategory } from "@/lib/types";
 import { UtensilsCrossed, Leaf, Flame, Star } from "lucide-react";
 import { restaurantInfo } from "@/lib/data";
@@ -14,8 +15,16 @@ const categories: { id: MenuCategory; label: string }[] = [
   { id: "drinks", label: "Drinks" },
 ];
 
+const uniqueMenuImages = Array.from(
+  new Set(menuItems.map((item) => item.image).filter((img): img is string => Boolean(img)))
+);
+
 export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState<MenuCategory>("starters");
+
+  useEffect(() => {
+    preloadImages(uniqueMenuImages);
+  }, []);
 
   const filteredItems = menuItems.filter((item) => item.category === activeCategory);
 
@@ -41,11 +50,12 @@ export default function MenuPage() {
       <section className="py-20 md:py-24 relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/hero/heroimagemenupage.png"
+          <OptimizedImage
+            src={heroImages.menu}
             alt="TAVO Restaurant Menu"
             fill
             className="object-cover"
+            variant="hero"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
@@ -103,11 +113,12 @@ export default function MenuPage() {
                 {/* Food Image */}
                 <div className="relative h-56 overflow-hidden">
                   {item.image ? (
-                    <Image
+                    <OptimizedImage
                       src={item.image}
                       alt={item.name}
                       fill
                       className="object-cover"
+                      variant="menuCard"
                     />
                   ) : (
                     <div className="relative h-full bg-gradient-to-br from-accent-500/30 via-brand-500/30 to-brand-500/30 overflow-hidden">

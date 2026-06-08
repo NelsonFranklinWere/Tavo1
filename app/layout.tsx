@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { ImagePreloader } from "@/components/image-preloader";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -19,8 +27,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
-  title: "TAVO — Savour The Difference | Fine Dining Restaurant Nairobi",
-  description: "TAVO - Savour The Difference. A fine dining experience in Rosslyn Square, Nairobi. Book your table today for an elegant culinary journey.",
+  title: "TAVO — Nairobi's Finest Fine Dining | Rosslyn Square",
+  description: "Nairobi's address for delicacies. TAVO at Rosslyn Square — world-class cuisine, refined ambience, and white-glove service worthy of the city's finest hotels.",
   keywords: ["Tavo Nairobi", "Rosslyn restaurants", "luxury dining in Nairobi", "fine dining Redhill Road", "Tavo Rosslyn Square", "premium restaurant Nairobi", "elegant dining Kenya", "fine dining Rosslyn Square"],
   authors: [{ name: "TAVO Restaurant" }],
   openGraph: {
@@ -111,9 +119,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${playfairDisplay.variable} ${inter.variable} antialiased`}
+        className={`${playfairDisplay.variable} ${cormorant.variable} ${inter.variable} antialiased bg-charcoal-950 text-ivory`}
       >
         <Navigation />
+        <ImagePreloader />
         <main>{children}</main>
         <Footer />
         <WhatsAppFloat />

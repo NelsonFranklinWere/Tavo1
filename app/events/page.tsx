@@ -1,218 +1,178 @@
-import { Calendar, Users, MapPin, Phone, Mail, Clock, Star, Award } from "lucide-react";
+import Link from "next/link";
+import {
+  Calendar,
+  Users,
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Star,
+  Award,
+} from "lucide-react";
 import { restaurantInfo } from "@/lib/data";
-import Image from "next/image";
+import { interiorImages } from "@/lib/images";
+import { PageHero } from "@/components/page-hero";
+import { SectionHeading } from "@/components/section-heading";
+import { OptimizedImage } from "@/components/optimized-image";
+import { eventOfferings, eventProcess } from "@/lib/pages-data";
+
+const iconMap = {
+  users: Users,
+  award: Award,
+  star: Star,
+  calendar: Calendar,
+  map: MapPin,
+  clock: Clock,
+};
 
 export default function EventsPage() {
   return (
-    <div className="min-h-screen pt-20 pb-20">
-      {/* Header */}
-      <section className="py-16 bg-gradient-modern relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/interior/setupambiance1.png"
-            alt="TAVO Restaurant Events Interior"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
-        </div>
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-brand-500">
-            Events & Catering
-          </h1>
-          <p className="text-xl text-white max-w-3xl mx-auto">
-            Transform your special moments into unforgettable experiences with TAVO&apos;s premium event services
+    <div className="min-h-screen bg-charcoal-950">
+      <PageHero
+        image={interiorImages.ambiance1}
+        imageAlt="TAVO private events and catering"
+        eyebrow="Events & Catering"
+        title="Occasions Worth Remembering"
+        subtitle="From intimate anniversaries to board dinners that close deals — TAVO brings Nairobi hotel-standard event service to Rosslyn Square."
+      />
+
+      {/* Intro */}
+      <section className="py-20 md:py-28 border-b border-gold-500/10">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <p className="text-champagne/80 text-lg md:text-xl leading-relaxed">
+            Nairobi&apos;s social calendar demands venues that understand discretion, excellence,
+            and the unspoken art of hospitality. At TAVO, your event is not a booking — it is a
+            collaboration. Our events team works alongside you from first conversation to final toast,
+            ensuring every detail reflects the standards your guests expect.
           </p>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-12 md:py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-brand-500">
-            Our Services
-          </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-            {/* Private Dining */}
-            <div className="group text-center p-4 sm:p-6 md:p-8 bg-primary-900 backdrop-blur-sm border border-accent-500/20 rounded-3xl hover:border-accent-500/50 transition-all duration-300 md:hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 md:group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
-                <Users className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
-              </div>
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Private Dining</h3>
-              <p className="text-sm sm:text-base text-xs sm:text-sm md:text-base text-neutral-400 leading-relaxed mb-4 sm:mb-6">
-                Intimate dining experiences for 2-20 guests in our elegant private dining room
-              </p>
-              <ul className="text-xs sm:text-sm text-neutral-500 space-y-1 sm:space-y-2">
-                <li>• Custom menu curation</li>
-                <li>• Dedicated service staff</li>
-                <li>• Wine pairing recommendations</li>
-                <li>• Special occasion decorations</li>
-              </ul>
-            </div>
+      {/* Event Offerings */}
+      <section className="py-24 md:py-32">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <SectionHeading
+            eyebrow="What We Offer"
+            title="Tailored for Every Occasion"
+            subtitle="Six distinct event experiences — each delivered with the precision of a five-star hotel."
+          />
 
-            {/* Corporate Events */}
-            <div className="group text-center p-4 sm:p-6 md:p-8 bg-primary-900 backdrop-blur-sm border border-accent-500/20 rounded-3xl hover:border-accent-500/50 transition-all duration-300 md:hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 md:group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
-                <Award className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
-              </div>
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Corporate Events</h3>
-              <p className="text-sm sm:text-base text-xs sm:text-sm md:text-base text-neutral-400 leading-relaxed mb-4 sm:mb-6">
-                Professional business meetings, client dinners, and corporate celebrations
-              </p>
-              <ul className="text-xs sm:text-sm text-neutral-500 space-y-1 sm:space-y-2">
-                <li>• Executive lunch meetings</li>
-                <li>• Client entertainment</li>
-                <li>• Team building dinners</li>
-                <li>• Presentation facilities</li>
-              </ul>
-            </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+            {eventOfferings.map((event) => {
+              const Icon = iconMap[event.icon];
+              return (
+                <article
+                  key={event.title}
+                  className="group p-8 border border-gold-500/15 hover:border-gold-500/35 transition-all duration-500 hover:bg-gold-500/5"
+                >
+                  <div className="w-12 h-12 border border-gold-500/30 flex items-center justify-center mb-6 group-hover:border-gold-500/60 transition-colors">
+                    <Icon className="w-5 h-5 text-gold-400" strokeWidth={1.5} />
+                  </div>
+                  <p className="text-gold-400 text-xs tracking-[0.2em] uppercase mb-2">{event.subtitle}</p>
+                  <h3 className="font-display text-xl text-ivory mb-4">{event.title}</h3>
+                  <p className="text-champagne/65 text-sm leading-relaxed mb-6">{event.description}</p>
+                  <ul className="space-y-2">
+                    {event.highlights.map((h) => (
+                      <li key={h} className="text-champagne/50 text-xs flex items-start gap-2">
+                        <span className="text-gold-500 mt-0.5">—</span>
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-            {/* Special Celebrations */}
-            <div className="group text-center p-4 sm:p-6 md:p-8 bg-primary-900 backdrop-blur-sm border border-accent-500/20 rounded-3xl hover:border-accent-500/50 transition-all duration-300 md:hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 md:group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
-                <Star className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
-              </div>
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Special Celebrations</h3>
-              <p className="text-sm sm:text-base text-xs sm:text-sm md:text-base text-neutral-400 leading-relaxed mb-4 sm:mb-6">
-                Birthdays, anniversaries, engagements, and milestone celebrations
-              </p>
-              <ul className="text-xs sm:text-sm text-neutral-500 space-y-1 sm:space-y-2">
-                <li>• Custom celebration menus</li>
-                <li>• Special decorations</li>
-                <li>• Photography coordination</li>
-                <li>• Surprise arrangements</li>
-              </ul>
+      {/* Showcase */}
+      <section className="py-20 bg-charcoal-900 border-y border-gold-500/10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-[4/3] overflow-hidden border border-gold-500/20">
+              <OptimizedImage
+                src={interiorImages.ambiance2}
+                alt="TAVO private dining setup"
+                fill
+                className="object-cover"
+                variant="galleryThumb"
+              />
             </div>
-
-            {/* Off-Site Catering */}
-            <div className="group text-center p-4 sm:p-6 md:p-8 bg-primary-900 backdrop-blur-sm border border-accent-500/20 rounded-3xl hover:border-accent-500/50 transition-all duration-300 md:hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 md:group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
-                <MapPin className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
+            <div>
+              <p className="text-gold-400 text-xs tracking-[0.3em] uppercase mb-4">Why TAVO Events</p>
+              <h2 className="font-display text-3xl md:text-4xl text-ivory mb-6">
+                The Venue Nairobi&apos;s Finest Choose
+              </h2>
+              <div className="space-y-4 text-champagne/75 text-sm leading-relaxed">
+                <p>
+                  Diplomatic dinners. C-suite board meetings. Engagement celebrations that
+                  make the guest list jealous. TAVO has hosted them all — with the same
+                  quiet confidence that defines Nairobi&apos;s best hotels.
+                </p>
+                <p>
+                  Private suites away from the main dining room. Sommelier-led wine service.
+                  Bespoke menus designed by our executive chef. And a team that anticipates
+                  needs before they are spoken.
+                </p>
               </div>
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Off-Site Catering</h3>
-              <p className="text-sm sm:text-base text-xs sm:text-sm md:text-base text-neutral-400 leading-relaxed mb-4 sm:mb-6">
-                Premium catering services for your home, office, or venue
-              </p>
-              <ul className="text-xs sm:text-sm text-neutral-500 space-y-1 sm:space-y-2">
-                <li>• Full-service catering</li>
-                <li>• Professional setup</li>
-                <li>• Premium equipment</li>
-                <li>• Cleanup services</li>
-              </ul>
-            </div>
-
-            {/* Wedding Receptions */}
-            <div className="group text-center p-4 sm:p-6 md:p-8 bg-primary-900 backdrop-blur-sm border border-accent-500/20 rounded-3xl hover:border-accent-500/50 transition-all duration-300 md:hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 md:group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
-                <Calendar className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
-              </div>
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Wedding Receptions</h3>
-              <p className="text-sm sm:text-base text-xs sm:text-sm md:text-base text-neutral-400 leading-relaxed mb-4 sm:mb-6">
-                Elegant wedding receptions and rehearsal dinners
-              </p>
-              <ul className="text-xs sm:text-sm text-neutral-500 space-y-1 sm:space-y-2">
-                <li>• Custom wedding menus</li>
-                <li>• Tasting sessions</li>
-                <li>• Coordination services</li>
-                <li>• Special dietary options</li>
-              </ul>
-            </div>
-
-            {/* Holiday Events */}
-            <div className="group text-center p-4 sm:p-6 md:p-8 bg-primary-900 backdrop-blur-sm border border-accent-500/20 rounded-3xl hover:border-accent-500/50 transition-all duration-300 md:hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/10">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent-500 to-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 md:group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-500/30">
-                <Clock className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
-              </div>
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-white">Holiday Events</h3>
-              <p className="text-sm sm:text-base text-xs sm:text-sm md:text-base text-neutral-400 leading-relaxed mb-4 sm:mb-6">
-                Special holiday celebrations and seasonal events
-              </p>
-              <ul className="text-xs sm:text-sm text-neutral-500 space-y-1 sm:space-y-2">
-                <li>• Holiday-themed menus</li>
-                <li>• Seasonal decorations</li>
-                <li>• Gift coordination</li>
-                <li>• Extended hours</li>
-              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-12 md:py-20 bg-primary-800">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-brand-500">
-            Our Process
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-accent-500 to-brand-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <span className="text-lg sm:text-xl md:text-2xl font-bold text-white">1</span>
+      {/* Process */}
+      <section className="py-24 md:py-32">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <SectionHeading
+            eyebrow="How It Works"
+            title="From Vision to Celebration"
+            subtitle="A seamless four-step journey — because planning an event should feel as refined as attending one."
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+            {eventProcess.map((step) => (
+              <div key={step.step} className="text-center">
+                <p className="font-display text-4xl text-gold-500/30 mb-4">{step.step}</p>
+                <h3 className="font-display text-xl text-ivory mb-3">{step.title}</h3>
+                <p className="text-champagne/60 text-sm leading-relaxed">{step.detail}</p>
               </div>
-              <h3 className="text-base sm:text-lg md:text-base sm:text-lg md:text-xl font-bold mb-2 text-white">Consultation</h3>
-              <p className="text-xs sm:text-sm md:text-base text-xs sm:text-sm md:text-base text-neutral-400">We discuss your vision, preferences, and requirements</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-accent-500 to-brand-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <span className="text-lg sm:text-xl md:text-2xl font-bold text-white">2</span>
-              </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 text-white">Menu Planning</h3>
-              <p className="text-xs sm:text-sm md:text-base text-neutral-400">Custom menu creation tailored to your event</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-accent-500 to-brand-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <span className="text-lg sm:text-xl md:text-2xl font-bold text-white">3</span>
-              </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 text-white">Tasting</h3>
-              <p className="text-xs sm:text-sm md:text-base text-neutral-400">Sample our proposed dishes and make adjustments</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-accent-500 to-brand-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <span className="text-lg sm:text-xl md:text-2xl font-bold text-white">4</span>
-              </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 text-white">Execution</h3>
-              <p className="text-xs sm:text-sm md:text-base text-neutral-400">Flawless event delivery with attention to every detail</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-12 bg-gradient-to-r from-accent-500 to-brand-500">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6 text-white">
-              Ready to Plan Your Event?
-            </h2>
-            <p className="text-xl text-white/90 mb-8">
-              Let us help you create an unforgettable experience
-            </p>
-            <div className="flex flex-col gap-4 items-center">
-              <div className="flex flex-row gap-4 justify-center items-center">
-                <a
-                  href={`tel:${restaurantInfo.phone}`}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-primary-900 text-accent-400 rounded-full font-bold hover:bg-primary-800 transition-all duration-300"
-                >
-                  <Phone className="w-5 h-5" />
-                  Call Us
-                </a>
-                <a
-                  href={`https://wa.me/${restaurantInfo.whatsapp.replace(/[^0-9]/g, '')}`}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white rounded-full font-bold hover:bg-green-500 transition-all duration-300"
-                >
-                  <Phone className="w-5 h-5" />
-                  WhatsApp
-                </a>
-              </div>
-              <a
-                href={`mailto:${restaurantInfo.email}`}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-primary-700 text-white rounded-full font-bold hover:bg-primary-600 transition-all duration-300"
-              >
-                <Mail className="w-5 h-5" />
-                Email Us
-              </a>
-            </div>
+      {/* CTA */}
+      <section className="py-24 bg-charcoal-900 border-t border-gold-500/10">
+        <div className="container mx-auto px-4 max-w-3xl text-center">
+          <p className="text-gold-400 text-xs tracking-[0.35em] uppercase mb-6">Begin Planning</p>
+          <h2 className="font-display text-3xl md:text-4xl text-ivory mb-6">
+            Let&apos;s Design Your Evening
+          </h2>
+          <p className="text-champagne/70 mb-10 leading-relaxed">
+            Our events team responds within 24 hours. Early booking recommended for
+            weekends and holiday seasons.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={`tel:${restaurantInfo.phone}`}
+              className="inline-flex items-center justify-center gap-2 px-10 py-3 bg-gold-500 hover:bg-gold-400 text-charcoal-950 text-sm tracking-[0.15em] uppercase font-semibold transition-colors"
+            >
+              <Phone className="w-4 h-4" />
+              Call Us
+            </a>
+            <a
+              href={`mailto:${restaurantInfo.email}?subject=TAVO Event Enquiry`}
+              className="inline-flex items-center justify-center gap-2 px-10 py-3 border border-gold-500/40 text-gold-300 hover:text-gold-200 text-sm tracking-[0.15em] uppercase transition-colors"
+            >
+              <Mail className="w-4 h-4" />
+              Email Events
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-10 py-3 border border-gold-500/40 text-gold-300 hover:text-gold-200 text-sm tracking-[0.15em] uppercase transition-colors"
+            >
+              Send a Message
+            </Link>
           </div>
         </div>
       </section>

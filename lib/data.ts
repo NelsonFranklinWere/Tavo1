@@ -1,4 +1,5 @@
 import { MenuItem } from "./types";
+import { drinkImages, foodImages } from "./images";
 
 export const menuItems: MenuItem[] = [
   // Starters
@@ -10,7 +11,7 @@ export const menuItems: MenuItem[] = [
     category: "starters",
     spiceLevel: "mild",
     isVegetarian: true,
-    image: "/food/elegantlyfriedfood1.png",
+    image: foodImages.elegantlyfriedfood1,
   },
   {
     id: "2",
@@ -20,7 +21,7 @@ export const menuItems: MenuItem[] = [
     category: "starters",
     spiceLevel: "mild",
     isVegetarian: false,
-    image: "/food/friedmeatcuisine.png",
+    image: foodImages.friedmeatcuisine,
   },
   {
     id: "3",
@@ -30,7 +31,7 @@ export const menuItems: MenuItem[] = [
     category: "starters",
     spiceLevel: "mild",
     isVegetarian: false,
-    image: "/food/seafood.png",
+    image: foodImages.seafood,
   },
   {
     id: "4",
@@ -40,7 +41,7 @@ export const menuItems: MenuItem[] = [
     category: "starters",
     spiceLevel: "mild",
     isVegetarian: true,
-    image: "/food/elegantlyfriedfood2.png",
+    image: foodImages.elegantlyfriedfood2,
   },
   {
     id: "5",
@@ -50,7 +51,7 @@ export const menuItems: MenuItem[] = [
     category: "starters",
     spiceLevel: "medium",
     isVegetarian: false,
-    image: "/food/seafood.png",
+    image: foodImages.seafood,
   },
   {
     id: "6",
@@ -60,7 +61,7 @@ export const menuItems: MenuItem[] = [
     category: "starters",
     spiceLevel: "mild",
     isVegetarian: true,
-    image: "/food/elegantlyfriedfood1.png",
+    image: foodImages.elegantlyfriedfood1,
   },
 
   // Mains
@@ -72,7 +73,7 @@ export const menuItems: MenuItem[] = [
     category: "mains",
     spiceLevel: "mild",
     isVegetarian: false,
-    image: "/food/driedmeatcuisine.png",
+    image: foodImages.driedmeatcuisine,
   },
   {
     id: "8",
@@ -82,7 +83,7 @@ export const menuItems: MenuItem[] = [
     category: "mains",
     spiceLevel: "mild",
     isVegetarian: false,
-    image: "/food/friedchicken.png",
+    image: foodImages.friedchicken,
   },
   {
     id: "9",
@@ -92,7 +93,7 @@ export const menuItems: MenuItem[] = [
     category: "mains",
     spiceLevel: "mild",
     isVegetarian: true,
-    image: "/food/superservedlunch.png",
+    image: foodImages.superservedlunch,
   },
   {
     id: "10",
@@ -102,7 +103,7 @@ export const menuItems: MenuItem[] = [
     category: "mains",
     spiceLevel: "mild",
     isVegetarian: false,
-    image: "/food/seafood.png",
+    image: foodImages.seafood,
   },
   {
     id: "11",
@@ -112,7 +113,7 @@ export const menuItems: MenuItem[] = [
     category: "mains",
     spiceLevel: "mild",
     isVegetarian: false,
-    image: "/food/driedmeatcuisine.png",
+    image: foodImages.driedmeatcuisine,
   },
   {
     id: "12",
@@ -122,7 +123,7 @@ export const menuItems: MenuItem[] = [
     category: "mains",
     spiceLevel: "mild",
     isVegetarian: true,
-    image: "/food/elegantlyfriedfood2.png",
+    image: foodImages.elegantlyfriedfood2,
   },
 
   // Desserts
@@ -133,7 +134,7 @@ export const menuItems: MenuItem[] = [
     price: 800,
     category: "desserts",
     isVegetarian: true,
-    image: "/food/elegantlyfriedfood1.png",
+    image: foodImages.elegantlyfriedfood1,
   },
   {
     id: "14",
@@ -142,7 +143,7 @@ export const menuItems: MenuItem[] = [
     price: 700,
     category: "desserts",
     isVegetarian: true,
-    image: "/food/elegantlyfriedfood2.png",
+    image: foodImages.elegantlyfriedfood2,
   },
   {
     id: "15",
@@ -151,7 +152,7 @@ export const menuItems: MenuItem[] = [
     price: 650,
     category: "desserts",
     isVegetarian: true,
-    image: "/food/superservedlunch.png",
+    image: foodImages.superservedlunch,
   },
   {
     id: "16",
@@ -160,7 +161,7 @@ export const menuItems: MenuItem[] = [
     price: 750,
     category: "desserts",
     isVegetarian: true,
-    image: "/food/elegantlyfriedfood1.png",
+    image: foodImages.elegantlyfriedfood1,
   },
   {
     id: "17",
@@ -169,7 +170,7 @@ export const menuItems: MenuItem[] = [
     price: 850,
     category: "desserts",
     isVegetarian: true,
-    image: "/food/elegantlyfriedfood2.png",
+    image: foodImages.elegantlyfriedfood2,
   },
   {
     id: "18",
@@ -178,7 +179,7 @@ export const menuItems: MenuItem[] = [
     price: 600,
     category: "desserts",
     isVegetarian: true,
-    image: "/food/superservedlunch.png",
+    image: foodImages.superservedlunch,
   },
 
   // Drinks
@@ -189,7 +190,7 @@ export const menuItems: MenuItem[] = [
     price: 1200,
     category: "drinks",
     isVegetarian: true,
-    image: "/drinks/twoglassescombineddrink.png",
+    image: drinkImages.twoglassescombineddrink,
   },
   {
     id: "20",
@@ -198,7 +199,7 @@ export const menuItems: MenuItem[] = [
     price: 800,
     category: "drinks",
     isVegetarian: true,
-    image: "/drinks/chillingdrink.png",
+    image: drinkImages.chillingdrink,
   },
   {
     id: "21",
@@ -207,7 +208,7 @@ export const menuItems: MenuItem[] = [
     price: 400,
     category: "drinks",
     isVegetarian: true,
-    image: "/drinks/premiumcoffee.png",
+    image: drinkImages.premiumcoffee,
   },
   {
     id: "22",
@@ -216,7 +217,7 @@ export const menuItems: MenuItem[] = [
     price: 500,
     category: "drinks",
     isVegetarian: true,
-    image: "/drinks/superjuicewithorange.png",
+    image: drinkImages.superjuicewithorange,
   },
   {
     id: "23",
@@ -225,7 +226,7 @@ export const menuItems: MenuItem[] = [
     price: 600,
     category: "drinks",
     isVegetarian: true,
-    image: "/drinks/twoglassescombineddrink.png",
+    image: drinkImages.twoglassescombineddrink,
   },
   {
     id: "24",
@@ -234,15 +235,15 @@ export const menuItems: MenuItem[] = [
     price: 350,
     category: "drinks",
     isVegetarian: true,
-    image: "/drinks/elegantcoffe.png",
+    image: drinkImages.elegantcoffe,
   },
 ];
 
 export const restaurantInfo = {
   name: "TAVO",
   tagline: "Savour The Difference",
-  subtext: "Welcome to TAVO — where every dish tells a story, every flavor leaves a mark, and every visit feels like home.",
-  description: "Nestled in the heart of Rosslyn Square, TAVO blends modern Nairobi charm with world-class dining. From our signature meals to our intimate ambience, every detail is designed to help you Savour The Difference.",
+  subtext: "Nairobi's address for delicacies — where world-class cuisine and white-glove service meet the standards of the city's finest hotels.",
+  description: "Nestled in Rosslyn Square Luxury Mall, TAVO is Nairobi's destination for refined dining. From signature delicacies to intimate private suites, every detail is crafted for those who expect excellence.",
   address: {
     street: "Rosslyn Square Luxury Mall",
     city: "Redhill Road, Nairobi",
