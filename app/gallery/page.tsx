@@ -50,10 +50,10 @@ export default function GalleryPage() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-6 py-2 text-xs tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 ${
+                className={`px-6 py-2.5 rounded-full text-xs tracking-[0.2em] uppercase whitespace-nowrap transition-all duration-300 ${
                   activeCategory === cat.id
-                    ? "bg-gold-500 text-charcoal-950 font-semibold"
-                    : "border border-gold-500/25 text-champagne/70 hover:text-gold-300 hover:border-gold-500/50"
+                    ? "bg-gradient-to-r from-accent-600 to-accent-500 text-white font-semibold shadow-lg shadow-accent-500/30"
+                    : "border border-gold-500/25 text-champagne/70 hover:text-accent-300 hover:border-accent-500/50"
                 }`}
               >
                 {cat.label}

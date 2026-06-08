@@ -4,7 +4,8 @@ import { restaurantInfo } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal-950 text-ivory border-t border-gold-500/20 relative z-50">
+    <footer className="bg-charcoal-950 text-ivory relative z-50">
+      <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-accent-500 to-transparent opacity-60" />
       <div className="container mx-auto px-4 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           <div className="md:col-span-5">

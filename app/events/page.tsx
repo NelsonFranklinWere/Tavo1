@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { AppButton } from "@/components/ui/app-button";
 import {
   Calendar,
   Users,
@@ -142,9 +142,10 @@ export default function EventsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-charcoal-900 border-t border-gold-500/10">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <p className="text-gold-400 text-xs tracking-[0.35em] uppercase mb-6">Begin Planning</p>
+      <section className="relative py-24 overflow-hidden border-t border-accent-500/20">
+        <div className="absolute inset-0 bg-gradient-to-t from-accent-900/25 to-charcoal-900" />
+        <div className="relative container mx-auto px-4 max-w-3xl text-center">
+          <p className="text-accent-400 text-xs tracking-[0.35em] uppercase mb-6">Begin Planning</p>
           <h2 className="font-display text-3xl md:text-4xl text-ivory mb-6">
             Let&apos;s Design Your Evening
           </h2>
@@ -152,27 +153,16 @@ export default function EventsPage() {
             Our events team responds within 24 hours. Early booking recommended for
             weekends and holiday seasons.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={`tel:${restaurantInfo.phone}`}
-              className="inline-flex items-center justify-center gap-2 px-10 py-3 bg-gold-500 hover:bg-gold-400 text-charcoal-950 text-sm tracking-[0.15em] uppercase font-semibold transition-colors"
-            >
-              <Phone className="w-4 h-4" />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
+            <AppButton href={`tel:${restaurantInfo.phone}`} external variant="primary" icon={<Phone className="w-4 h-4" />}>
               Call Us
-            </a>
-            <a
-              href={`mailto:${restaurantInfo.email}?subject=TAVO Event Enquiry`}
-              className="inline-flex items-center justify-center gap-2 px-10 py-3 border border-gold-500/40 text-gold-300 hover:text-gold-200 text-sm tracking-[0.15em] uppercase transition-colors"
-            >
-              <Mail className="w-4 h-4" />
+            </AppButton>
+            <AppButton href={`mailto:${restaurantInfo.email}?subject=TAVO Event Enquiry`} external variant="outline" icon={<Mail className="w-4 h-4" />}>
               Email Events
-            </a>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-10 py-3 border border-gold-500/40 text-gold-300 hover:text-gold-200 text-sm tracking-[0.15em] uppercase transition-colors"
-            >
+            </AppButton>
+            <AppButton href="/contact" variant="outline">
               Send a Message
-            </Link>
+            </AppButton>
           </div>
         </div>
       </section>

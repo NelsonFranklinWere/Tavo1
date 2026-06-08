@@ -2,8 +2,8 @@ import { SectionHeading } from "@/components/section-heading";
 
 export function PhilosophySection() {
   return (
-    <section className="py-24 md:py-32 bg-charcoal-950 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl" />
+    <section className="py-24 md:py-32 bg-charcoal-950 relative overflow-hidden section-red-accent">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl" />
       <div className="container mx-auto px-4 max-w-4xl relative z-10">
         <SectionHeading
           eyebrow="Our Philosophy"

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MapPin, Phone, Mail, Clock, MessageSquare, Navigation } from "lucide-react";
+import { AppButton } from "@/components/ui/app-button";
 import { restaurantInfo } from "@/lib/data";
 import { interiorImages } from "@/lib/images";
 import { PageHero } from "@/components/page-hero";
@@ -159,8 +160,20 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* CTA Buttons */}
+      <section className="py-12 section-red-accent border-y border-accent-500/15">
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <AppButton href={restaurantInfo.social.google} external variant="primary" icon={<Navigation className="w-4 h-4" />}>
+            Get Directions
+          </AppButton>
+          <AppButton href="/reservations" variant="outline">
+            Reserve a Table
+          </AppButton>
+        </div>
+      </section>
+
       {/* Quick Actions */}
-      <section className="py-16 border-t border-gold-500/10">
+      <section className="py-16 border-t border-accent-500/10">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="grid sm:grid-cols-3 gap-4">
             <Link

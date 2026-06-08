@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Crown, Wine, ChefHat } from "lucide-react";
+import { AppButton } from "@/components/ui/app-button";
 import { SectionHeading } from "@/components/section-heading";
 import { experiences } from "@/lib/home-data";
 
@@ -39,12 +39,9 @@ export function ExperienceSection() {
         </div>
 
         <div className="text-center mt-14">
-          <Link
-            href="/events"
-            className="inline-block px-10 py-4 border border-gold-500/40 text-gold-300 hover:bg-gold-500/10 text-sm tracking-[0.2em] uppercase transition-all duration-500"
-          >
+          <AppButton href="/events" variant="outline">
             Private Events & Catering
-          </Link>
+          </AppButton>
         </div>
       </div>
     </section>

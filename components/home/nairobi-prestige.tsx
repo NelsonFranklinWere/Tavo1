@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { MapPin, Clock, Phone } from "lucide-react";
+import { AppButton } from "@/components/ui/app-button";
 import { OptimizedImage } from "@/components/optimized-image";
 import { interiorImages } from "@/lib/images";
 import { restaurantInfo } from "@/lib/data";
@@ -31,15 +31,14 @@ export function NairobiPrestige() {
               most distinguished residences and hotels. TAVO is where discerning Nairobi
               gathers for an evening worth remembering.
             </p>
-            <Link
+            <AppButton
               href={restaurantInfo.social.google}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-gold-500 hover:bg-gold-400 text-charcoal-950 text-sm tracking-[0.15em] uppercase font-semibold transition-colors"
+              external
+              variant="primary"
+              icon={<MapPin className="w-4 h-4" />}
             >
-              <MapPin className="w-4 h-4" />
               Get Directions
-            </Link>
+            </AppButton>
           </div>
 
           <div className="space-y-6 border border-gold-500/20 p-8 md:p-10 bg-charcoal-950/60 backdrop-blur-sm">

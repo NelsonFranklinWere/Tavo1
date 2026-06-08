@@ -77,6 +77,8 @@ module.exports = {
       boxShadow: {
         'gold-lg': '0 20px 50px rgba(201, 169, 98, 0.15)',
         'gold-glow': '0 0 40px rgba(201, 169, 98, 0.2)',
+        'red-lg': '0 20px 50px rgba(220, 38, 38, 0.25)',
+        'red-glow': '0 0 40px rgba(220, 38, 38, 0.35)',
       },
       animation: {
         marquee: 'marquee 40s linear infinite',

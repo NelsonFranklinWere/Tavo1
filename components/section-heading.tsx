@@ -31,7 +31,7 @@ export function SectionHeading({
         }`}
       >
         <span className="h-px w-12 bg-gold-500/60" />
-        <span className="w-1.5 h-1.5 rotate-45 bg-gold-500" />
+        <span className="w-2 h-2 rounded-full bg-gradient-to-br from-accent-400 to-accent-600 shadow-red-glow" />
         <span className="h-px w-12 bg-gold-500/60" />
       </div>
       {subtitle && (

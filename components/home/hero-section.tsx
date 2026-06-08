@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { ChevronDown, MapPin } from "lucide-react";
+import { ChevronDown, MapPin, UtensilsCrossed } from "lucide-react";
 import { OptimizedImage } from "@/components/optimized-image";
+import { AppButton } from "@/components/ui/app-button";
 import { heroImages } from "@/lib/images";
 import { restaurantInfo } from "@/lib/data";
 
@@ -18,11 +18,11 @@ export function HeroSection() {
           fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal-950/90 via-charcoal-950/50 to-charcoal-950" />
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal-950/40 via-transparent to-charcoal-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-accent-900/20 via-transparent to-charcoal-950/40" />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 text-center max-w-5xl pt-24">
-        <p className="text-gold-400 text-xs md:text-sm tracking-[0.4em] uppercase mb-6 animate-fade-in font-body">
+        <p className="text-accent-400 text-xs md:text-sm tracking-[0.4em] uppercase mb-6 animate-fade-in font-body">
           Rosslyn Square · Nairobi · Est. Fine Dining
         </p>
 
@@ -31,11 +31,11 @@ export function HeroSection() {
         </h1>
 
         <div className="flex items-center justify-center gap-4 mb-8 animate-fade-in">
-          <span className="h-px w-16 md:w-24 bg-gold-500/50" />
+          <span className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-accent-500/60" />
           <p className="text-lg md:text-2xl text-gold-300 font-display italic tracking-wide">
             {restaurantInfo.tagline}
           </p>
-          <span className="h-px w-16 md:w-24 bg-gold-500/50" />
+          <span className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-accent-500/60" />
         </div>
 
         <p className="text-base md:text-xl text-champagne/90 mb-12 max-w-2xl mx-auto leading-relaxed font-body animate-fade-in">
@@ -43,33 +43,27 @@ export function HeroSection() {
           and white-glove service meet the standards of the city&apos;s finest hotels.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 animate-fade-in">
-          <Link
-            href="/reservations"
-            className="group px-10 py-4 bg-gold-500 hover:bg-gold-400 text-charcoal-950 rounded-sm font-semibold text-sm tracking-[0.15em] uppercase transition-all duration-500 hover:shadow-gold-lg"
-          >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 animate-fade-in">
+          <AppButton href="/reservations" variant="primary">
             Reserve Your Table
-          </Link>
-          <Link
-            href="/menu"
-            className="group px-10 py-4 border border-gold-500/50 hover:border-gold-400 text-gold-300 hover:text-gold-200 rounded-sm font-semibold text-sm tracking-[0.15em] uppercase transition-all duration-500 backdrop-blur-sm"
-          >
+          </AppButton>
+          <AppButton href="/menu" variant="outline" icon={<UtensilsCrossed className="w-4 h-4" />}>
             Explore Delicacies
-          </Link>
+          </AppButton>
         </div>
 
-        <a
+        <AppButton
           href={restaurantInfo.social.google}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 mt-10 text-champagne/60 hover:text-gold-400 text-sm tracking-wide transition-colors"
+          external
+          variant="outline"
+          className="mt-8 !py-3 !px-7 text-xs border-accent-500/40 hover:bg-accent-500/15"
+          icon={<MapPin className="w-4 h-4 text-accent-400" />}
         >
-          <MapPin className="w-4 h-4" />
-          Rosslyn Square Luxury Mall, Redhill Road
-        </a>
+          Get Directions
+        </AppButton>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce-slow text-gold-500/60">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce-slow text-accent-500/70">
         <ChevronDown className="w-6 h-6" />
       </div>
     </section>

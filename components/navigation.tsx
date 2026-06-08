@@ -101,7 +101,7 @@ export function Navigation() {
               <Link
                 href="/reservations"
                 prefetch
-                className="px-6 py-2.5 bg-gold-500 hover:bg-gold-400 text-charcoal-950 text-xs tracking-[0.15em] uppercase font-semibold transition-all duration-300 hover:shadow-gold-lg"
+                className="px-6 py-2.5 rounded-full bg-gradient-to-r from-accent-600 to-accent-500 hover:from-accent-500 hover:to-accent-400 text-white text-xs tracking-[0.15em] uppercase font-semibold transition-all duration-300 shadow-lg shadow-accent-500/30 hover:shadow-accent-500/50 hover:scale-105"
               >
                 Reserve
               </Link>
@@ -140,7 +140,7 @@ export function Navigation() {
                 <Link
                   href="/reservations"
                   onClick={() => setIsOpen(false)}
-                  className="px-6 py-3 bg-gold-500 text-charcoal-950 text-sm tracking-[0.15em] uppercase font-semibold text-center mt-2"
+                  className="px-6 py-3 rounded-full bg-gradient-to-r from-accent-600 to-accent-500 text-white text-sm tracking-[0.15em] uppercase font-semibold text-center mt-2 shadow-lg shadow-accent-500/30"
                 >
                   Reserve Table
                 </Link>
